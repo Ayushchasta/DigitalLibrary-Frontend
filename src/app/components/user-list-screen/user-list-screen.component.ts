@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from "ngx-spinner";
+import { UserService } from 'src/app/services/user-service/user.service';
 
 @Component({
   selector: 'app-user-list-screen',
@@ -8,15 +9,26 @@ import { NgxSpinnerService } from "ngx-spinner";
 })
 export class UserListScreenComponent implements OnInit {
 
-  constructor(private spinner: NgxSpinnerService) { }
+  userList : any = [];
+  constructor(private spinner: NgxSpinnerService, private UserService:UserService) { }
 
   ngOnInit(): void {
     this.spinner.show();
 
-    setTimeout(() => {
-      /* spinner ends after 800 ms */
-      this.spinner.hide();
-    }, 800);
+    
+
+    this.UserService.getUserList().subscribe(
+      (data) => {
+          this.userList = data;
+          console.log(this.userList);
+          this.spinner.hide();
+      },
+      (error) => {
+          console.log('Error: ', error);
+          this.spinner.hide();
+      }
+  );
+
   }
 
 }

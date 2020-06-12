@@ -9,26 +9,12 @@
         </tr>
     </thead>
     <tbody class="bg-light">
-        <tr>
-            <td>1</td>
-            <td>Harry</td>
-            <td>READER</td>
-            <td>1</td>
-            <td>asdfghjkl</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Ray</td>
-            <td>LIBRARION</td>
-            <td>2</td>
-            <td>qwertyuiop</td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>Tyson</td>
-            <td>READER</td>
-            <td>3</td>
-            <td>zxcvbnm</td>
+        <tr *ngFor="let user of userList">
+            <td>{{user.id}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.role}}</td>
+            <td>{{user.mobile_no}}</td>
+            <td>{{user.password}}</td>
         </tr>
     </tbody>
 </table>
