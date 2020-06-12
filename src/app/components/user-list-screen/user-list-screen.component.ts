@@ -14,10 +14,8 @@ export class UserListScreenComponent implements OnInit {
     this.spinner.show();
 
     setTimeout(() => {
-      /** spinner ends after 5 seconds */
+      /* spinner ends after 800 ms */
       this.spinner.hide();
-
-      this.spinner.show();
     }, 800);
   }
 
