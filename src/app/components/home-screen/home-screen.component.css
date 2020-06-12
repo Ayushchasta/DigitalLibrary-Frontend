@@ -1,3 +1,15 @@
+
+h1 {
+    color: white;
+    text-align: justify;
+    text-align: center;
+}
 p {
     color: white;
+    font-size: 20px;
+    
+    position: fixed; /* or absolute */
+    top: 50%;
+    left: 50%;
+    opacity: 0.8;
 }

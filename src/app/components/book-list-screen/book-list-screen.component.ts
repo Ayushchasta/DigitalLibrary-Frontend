@@ -14,7 +14,7 @@ export class BookListScreenComponent implements OnInit {
     this.spinner.show();
 
     setTimeout(() => {
-      /** spinner ends after 5 seconds */
+      /** spinner ends after 0.8 seconds */
       this.spinner.hide();
 
       this.spinner.show();
