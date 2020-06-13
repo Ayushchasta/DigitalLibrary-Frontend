@@ -30,4 +30,7 @@ export class BookService {
   getBookList() {
     return this.httpClient.get(`${this.baseurl}/books/`).pipe(retry(1), catchError(this.handleError));
   }
+  deleteBook(bookId) {
+    return this.httpClient.delete(`${this.baseurl}/book/${bookId}`).pipe(retry(1), catchError(this.handleError));
+  }
 }

@@ -12,11 +12,25 @@ export class UserListScreenComponent implements OnInit {
   userList : any = [];
   constructor(private spinner: NgxSpinnerService, private UserService:UserService) { }
 
-  ngOnInit(): void {
+  clickOnDelete(userId) {
+    this.deleteUsers(userId);
+  }
+
+  deleteUsers(userId) {
     this.spinner.show();
-
-    
-
+    this.UserService.deleteUser(userId).subscribe(
+      (data) => {
+          this.fetchUsers();
+      },
+      (error) => {
+          console.log('Error: ', error);
+          this.spinner.hide();
+      }
+  );
+  }
+  
+  fetchUsers() {
+    this.spinner.show();
     this.UserService.getUserList().subscribe(
       (data) => {
           this.userList = data;
@@ -28,7 +42,10 @@ export class UserListScreenComponent implements OnInit {
           this.spinner.hide();
       }
   );
+  }
 
+  ngOnInit(): void {
+    this.fetchUsers();
   }
 
 }

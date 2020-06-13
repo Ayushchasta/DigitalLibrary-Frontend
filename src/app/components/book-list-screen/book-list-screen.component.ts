@@ -13,9 +13,25 @@ export class BookListScreenComponent implements OnInit {
 
   constructor(private spinner: NgxSpinnerService, private bookService:BookService) { }
 
-  ngOnInit(): void {
-    this.spinner.show();
+  clickOnDelete(bookId) {
+    this.deleteBooks(bookId);
+  }
 
+  deleteBooks(bookId) {
+    this.spinner.show();
+    this.bookService.deleteBook(bookId).subscribe(
+      (data) => {
+          this.fetchBooks();
+      },
+      (error) => {
+          console.log('Error: ', error);
+          this.spinner.hide();
+      }
+  );
+  }
+  
+  fetchBooks() {
+    this.spinner.show();
     this.bookService.getBookList().subscribe(
       (data) => {
           this.bookList = data;
@@ -27,6 +43,10 @@ export class BookListScreenComponent implements OnInit {
           this.spinner.hide();
       }
   );
+  }
+
+  ngOnInit(): void {
+    this.fetchBooks();
   }
 
 }

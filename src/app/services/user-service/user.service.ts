@@ -31,4 +31,8 @@ export class UserService {
    getUserList() {
     return this.httpClient.get(`${this.baseurl}/users/`).pipe(retry(1), catchError(this.handleError));
   }
+  
+  deleteUser(userId) {
+    return this.httpClient.delete(`${this.baseurl}/user/${userId}`).pipe(retry(1), catchError(this.handleError));
+  }
 }
