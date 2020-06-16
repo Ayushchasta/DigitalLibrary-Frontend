@@ -4,35 +4,38 @@ import { throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
-
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class UserService {
-  baseurl: string = null;
+    baseurl: string = null;
 
-  handleError(error) {
-    let errorMessage = '';
-    if (error.error instanceof ErrorEvent) {
-        // client-side error
-        errorMessage = `Error: ${error.error.message}`;
-    } else {
-        // server-side error
-        errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    handleError(error) {
+        let errorMessage = '';
+        if (error.error instanceof ErrorEvent) {
+            // client-side error
+            errorMessage = `Error: ${error.error.message}`;
+        } else {
+            // server-side error
+            errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+        }
+        window.alert(errorMessage);
+        return throwError(errorMessage);
     }
-    window.alert(errorMessage);
-    return throwError(errorMessage);
-}
 
-  constructor(private dataManager : DataManagerService, private httpClient : HttpClient) {
-    this.baseurl = dataManager.getServerHostname();
-   }
+    constructor(private dataManager: DataManagerService, private httpClient: HttpClient) {
+        this.baseurl = dataManager.getServerHostname();
+    }
 
-   getUserList() {
-    return this.httpClient.get(`${this.baseurl}/users/`).pipe(retry(1), catchError(this.handleError));
-  }
-  
-  deleteUser(userId) {
-    return this.httpClient.delete(`${this.baseurl}/user/${userId}`).pipe(retry(1), catchError(this.handleError));
-  }
+    createNewUser(newUser) {
+        return this.httpClient.post(`${this.baseurl}/user/`, newUser).pipe(retry(1), catchError(this.handleError));
+    }
+
+    getUserList() {
+        return this.httpClient.get(`${this.baseurl}/users/`).pipe(retry(1), catchError(this.handleError));
+    }
+
+    deleteUser(userId) {
+        return this.httpClient.delete(`${this.baseurl}/user/${userId}`).pipe(retry(1), catchError(this.handleError));
+    }
 }

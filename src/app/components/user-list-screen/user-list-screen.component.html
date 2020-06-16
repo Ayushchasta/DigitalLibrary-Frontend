@@ -1,26 +1,81 @@
-<table class="table table-sm text-center">
-    <thead class="thead-dark">
-        <tr >
-            <th scope="col">ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">Role</th>
-            <th scope="col">Mobile No.</th>
-            <th scope="col">Password</th>
-            <th scope="col">Actions</th>
-        </tr>
-    </thead>
-    <tbody class="bg-light">
-        <tr *ngFor="let user of userList">
-            <td>{{user.id}}</td>
-            <td>{{user.name}}</td>
-            <td>{{user.role}}</td>
-            <td>{{user.mobile_no}}</td>
-            <td>{{user.password}}</td>
-            <td>
-                <button class="btn btn-danger" (click)="clickOnDelete(user.id);">
-                    <i class="fa fa-trash fa-1x"></i>
-                </button>
-            </td>
-        </tr>
-    </tbody>
-</table>
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header text-white bg-dark">
+        <h4 class="modal-title" id="modal-basic-title">Hey, Got new book!</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body" style="padding: 30px;">
+        <form>
+            <div class="form-group">
+                <label>Name</label>
+                <input [(ngModel)]="newUser.name" name="name" type="text" class="form-control" id="name" aria-describedby="nameHelp" placeholder="Enter Name" />
+            </div>
+            <div class="form-group">
+                <label>Role</label>
+                <input [(ngModel)]="newUser.role" name="role" type="text" class="form-control" id="role" aria-describedby="roleHelp" placeholder="Enter Role" />
+            </div>
+            <div class="form-group">
+                <label>Mobile No</label>
+                <input type="text" class="form-control" [(ngModel)]="newUser.mobile_no" name="mobile_no" id="mobile_no" placeholder="Enter Mobile No." />
+            </div>
+            <div class="form-group">
+                <label>password</label>
+                <input type="password" class="form-control" [(ngModel)]="newUser.password" name="password" id="password" placeholder="Enter Password" />
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="c('Save click'); functionOnSubmit()">Save</button>
+    </div>
+</ng-template>
+
+<div class="card" style="border-radius: 10px; border: transparent;">
+    <h5 class="card-header text-white" style="border-radius: 10px; margin: 0; background-color: rgba(0, 0, 0, 0.7);">
+        Users On Digital Library
+    </h5>
+    <div class="card-body">
+        <div class="shadow-lg p-3 mb-5 bg-white rounded">
+            <table class="table table-sm table-bordered table-striped">
+                <thead class="thead-dark">
+                    <tr class="text-center">
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Role</th>
+                        <th scope="col">Mobile No.</th>
+                        <th scope="col">Password</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of userList" class="text-center">
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.role }}</td>
+                        <td>{{ user.mobile_no }}</td>
+                        <td>{{ user.password }}</td>
+                        <td>
+                            <button class="btn btn-sm btn-info m-1" disabled>
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                            </button>
+                            <button class="btn btn-sm btn-success m-1" disabled>
+                                <i class="fa fa-download" aria-hidden="true"></i>
+                            </button>
+                            <button class="btn btn-sm btn-danger m-1" (click)="clickOnDelete(user.id)">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr class="text-center">
+                        <td colspan="5"></td>
+                        <td>
+                            <button class="btn btn-sm btn-info m-1" (click)="open(content)">
+                                Add New
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,25 +1,82 @@
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header text-white bg-dark">
+        <h4 class="modal-title" id="modal-basic-title">Hey, Got new book!</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body" style="padding: 30px;">
+        <form>
+            <div class="form-group">
+                <label>Book Name</label>
+                <input [(ngModel)]="newBook.bookName" name="bookName" type="text" class="form-control" id="bookName" aria-describedby="emailHelp" placeholder="Enter Book Name" />
+            </div>
+            <div class="form-group">
+                <label>Author</label>
+                <input [(ngModel)]="newBook.bookAuthor" name="bookAuthor" type="text" class="form-control" id="bookAuthor" aria-describedby="emailHelp" placeholder="Enter Author Name" />
+            </div>
+            <div class="form-group">
+                <label>Publisher</label>
+                <input type="text" class="form-control" [(ngModel)]="newBook.bookPublisher" name="bookPublisher" id="bookPublisher" placeholder="Enter Publisher Name" />
+            </div>
+            <div class="form-group">
+                <label>Book Pdf</label>
+                <div class="custom-file mb-3">
+                    <input type="file" class="custom-file-input" id="bookFile" name="bookFile" />
+                    <label class="custom-file-label">Choose file</label>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="c('Save click'); functionOnSubmit()">Save</button>
+    </div>
+</ng-template>
 
-<table class="table">
-    <thead class="thead-dark">
-        <tr >
-            <th scope="col">ID</th>
-            <th scope="col">Book Name</th>
-            <th scope="col">Author</th>
-            <th scope="col">Publisher</th>
-            <th scope="col">Actions</th>
-        </tr>
-    </thead>
-    <tbody class="bg-light">
-        <tr *ngFor="let book of bookList" >
-            <td>{{book.id}}</td>
-            <td>{{book.bookname}}</td>
-            <td>{{book.author}}</td>
-            <td>{{book.publisher}}</td>
-            <td>
-                <button class="btn btn-danger" (click)="clickOnDelete(book.id);">
-                    <i class="fa fa-trash fa-1x"></i>
-                </button>
-            </td>
-        </tr>
-    </tbody>
-</table>
+<div class="card" style="border-radius: 10px; border: transparent;">
+    <h5 class="card-header text-white" style="border-radius: 10px; margin: 0; background-color: rgba(0, 0, 0, 0.7);">
+        Books in Library
+    </h5>
+    <div class="card-body">
+        <div class="shadow-lg p-3 mb-5 bg-white rounded">
+            <table class="table table-sm table-bordered table-striped">
+                <thead class="thead-dark">
+                    <tr class="text-center">
+                        <th scope="col">ID</th>
+                        <th scope="col">Book Name</th>
+                        <th scope="col">Author</th>
+                        <th scope="col">Publisher</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let book of bookList" class="text-center">
+                        <td>{{ book.id }}</td>
+                        <td>{{ book.bookname }}</td>
+                        <td>{{ book.author }}</td>
+                        <td>{{ book.publisher }}</td>
+                        <td>
+                            <button class="btn btn-sm btn-info m-1" disabled>
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                            </button>
+                            <button class="btn btn-sm btn-success m-1" disabled>
+                                <i class="fa fa-download" aria-hidden="true"></i>
+                            </button>
+                            <button class="btn btn-sm btn-danger m-1" (click)="clickOnDelete(book.id)">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr class="text-center">
+                        <td colspan="4"></td>
+                        <td>
+                            <button class="btn btn-sm btn-info m-1" (click)="open(content)">
+                                Add New
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

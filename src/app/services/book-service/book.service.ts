@@ -5,32 +5,35 @@ import { retry, catchError } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class BookService {
-  baseurl: string = null;
+    baseurl: string = null;
 
-  handleError(error) {
-      let errorMessage = '';
-      if (error.error instanceof ErrorEvent) {
-          // client-side error
-          errorMessage = `Error: ${error.error.message}`;
-      } else {
-          // server-side error
-          errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-      }
-      window.alert(errorMessage);
-      return throwError(errorMessage);
-  }
-  
-  constructor(private dataManager : DataManagerService, private httpClient : HttpClient) {
-    this.baseurl = dataManager.getServerHostname();
-  }
+    handleError(error) {
+        let errorMessage = '';
+        if (error.error instanceof ErrorEvent) {
+            // client-side error
+            errorMessage = `Error: ${error.error.message}`;
+        } else {
+            // server-side error
+            errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+        }
+        window.alert(errorMessage);
+        return throwError(errorMessage);
+    }
 
-  getBookList() {
-    return this.httpClient.get(`${this.baseurl}/books/`).pipe(retry(1), catchError(this.handleError));
-  }
-  deleteBook(bookId) {
-    return this.httpClient.delete(`${this.baseurl}/book/${bookId}`).pipe(retry(1), catchError(this.handleError));
-  }
+    constructor(private dataManager: DataManagerService, private httpClient: HttpClient) {
+        this.baseurl = dataManager.getServerHostname();
+    }
+
+    createNewBook(newBook) {
+        return this.httpClient.post(`${this.baseurl}/book/`, newBook).pipe(retry(1), catchError(this.handleError));
+    }
+    getBookList() {
+        return this.httpClient.get(`${this.baseurl}/books/`).pipe(retry(1), catchError(this.handleError));
+    }
+    deleteBook(bookId) {
+        return this.httpClient.delete(`${this.baseurl}/book/${bookId}`).pipe(retry(1), catchError(this.handleError));
+    }
 }
