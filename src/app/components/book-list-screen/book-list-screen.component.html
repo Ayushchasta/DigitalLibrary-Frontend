@@ -22,7 +22,7 @@
             <div class="form-group">
                 <label>Book Pdf</label>
                 <div class="custom-file mb-3">
-                    <input type="file" class="custom-file-input" id="bookFile" name="bookFile" />
+                    <input type="file" class="custom-file-input" (change)="onFileSelected($event)" id="bookFile" name="bookFile" accept=".pdf" />
                     <label class="custom-file-label">Choose file</label>
                 </div>
             </div>

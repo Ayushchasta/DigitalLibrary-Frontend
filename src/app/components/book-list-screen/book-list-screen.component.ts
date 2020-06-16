@@ -10,6 +10,7 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class BookListScreenComponent implements OnInit {
     bookList: any = [];
+    fileToUpload: File;
 
     newBook = {
         bookName: '',
@@ -17,7 +18,36 @@ export class BookListScreenComponent implements OnInit {
         bookPublisher: '',
     };
 
+    onFileSelected(event) {
+        console.log('onFileSelected => ', event);
+        this.fileToUpload = <File>event.target.files[0];
+    }
+
     functionOnSubmit() {
+        this.spinner.show();
+        const formData = new FormData();
+        formData.append('bookName', this.newBook.bookName);
+        formData.append('bookPublisher', this.newBook.bookPublisher);
+        formData.append('bookAuthor', this.newBook.bookAuthor);
+        formData.append('file', this.fileToUpload);
+        console.log('functionOnSubmit => ', formData.getAll('bookName'));
+        this.bookService.createNewBook(formData).subscribe(
+            (data) => {
+                this.newBook = {
+                    bookName: '',
+                    bookAuthor: '',
+                    bookPublisher: '',
+                };
+                this.fetchBooks();
+            },
+            (error) => {
+                console.log('Error: ', error);
+                this.spinner.hide();
+            }
+        );
+    }
+
+    functionOnSubmitOld() {
         this.spinner.show();
         console.log('functionOnSubmit', this.newBook);
         this.bookService.createNewBook(this.newBook).subscribe(

@@ -27,7 +27,7 @@ export class BookService {
         this.baseurl = dataManager.getServerHostname();
     }
 
-    createNewBook(newBook) {
+    createNewBookOld(newBook) {
         return this.httpClient.post(`${this.baseurl}/book/`, newBook).pipe(retry(1), catchError(this.handleError));
     }
     getBookList() {
@@ -35,5 +35,8 @@ export class BookService {
     }
     deleteBook(bookId) {
         return this.httpClient.delete(`${this.baseurl}/book/${bookId}`).pipe(retry(1), catchError(this.handleError));
+    }
+    createNewBook(formData) {
+        return this.httpClient.post(`${this.baseurl}/book`, formData, { responseType: 'text' }).pipe(retry(0), catchError(this.handleError));
     }
 }
