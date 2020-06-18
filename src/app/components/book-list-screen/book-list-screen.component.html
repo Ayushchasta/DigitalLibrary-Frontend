@@ -33,6 +33,21 @@
     </div>
 </ng-template>
 
+<ng-template #viewpdfcontent let-c="close" let-d="dismiss">
+    <div class="modal-header text-white bg-dark">
+        <h4 class="modal-title" id="modal-basic-title">Hey, Got new book!</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body" style="padding: 30px;">
+        <iframe [src]="getBookURL()" width="100%" height="500px"> </iframe>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="c('Save click')">Close</button>
+    </div>
+</ng-template>
+
 <div class="card" style="border-radius: 10px; border: transparent;">
     <h5 class="card-header text-white" style="border-radius: 10px; margin: 0; background-color: rgba(0, 0, 0, 0.7);">
         Books in Library
@@ -52,14 +67,14 @@
                 <tbody>
                     <tr *ngFor="let book of bookList" class="text-center">
                         <td>{{ book.id }}</td>
-                        <td>{{ book.bookname }}</td>
+                        <td>{{ book.bookName }}</td>
                         <td>{{ book.author }}</td>
                         <td>{{ book.publisher }}</td>
                         <td>
-                            <button class="btn btn-sm btn-info m-1" disabled>
+                            <button class="btn btn-sm btn-info m-1" (click)="openXl(viewpdfcontent); bookToView = book">
                                 <i class="fa fa-eye" aria-hidden="true"></i>
                             </button>
-                            <a href="http://localhost:8000/download/{{ book.fileName.replace('Uploads/', '') }}?bookName={{ book.bookname }}" download>
+                            <a href="http://localhost:8000/download/{{ book.fileName.replace('Uploads/', '') }}?bookName={{ book.bookName }}" download>
                                 <button class="btn btn-sm btn-success m-1">
                                     <i class="fa fa-download" aria-hidden="true"></i>
                                 </button>

@@ -3,6 +3,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { BookService } from 'src/app/services/book-service/book.service';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
+import { DomSanitizer } from '@angular/platform-browser';
+
 @Component({
     selector: 'app-book-list-screen',
     templateUrl: './book-list-screen.component.html',
@@ -17,6 +19,12 @@ export class BookListScreenComponent implements OnInit {
         bookAuthor: '',
         bookPublisher: '',
     };
+    bookToView: any;
+
+    getBookURL() {
+        let fn = this.bookToView.fileName.replace('Uploads/', '');
+        return this.sanitizer.bypassSecurityTrustResourceUrl(`http://localhost:8000/view/${fn}`);
+    }
 
     onFileSelected(event) {
         console.log('onFileSelected => ', event);
@@ -66,7 +74,7 @@ export class BookListScreenComponent implements OnInit {
         );
     }
 
-    constructor(config: NgbModalConfig, private modalService: NgbModal, private spinner: NgxSpinnerService, private bookService: BookService) {
+    constructor(private sanitizer: DomSanitizer, config: NgbModalConfig, private modalService: NgbModal, private spinner: NgxSpinnerService, private bookService: BookService) {
         config.backdrop = 'static';
         config.keyboard = false;
     }
@@ -74,7 +82,9 @@ export class BookListScreenComponent implements OnInit {
     open(content) {
         this.modalService.open(content);
     }
-
+    openXl(content) {
+        this.modalService.open(content, { size: 'xl' });
+    }
     clickOnDelete(bookId) {
         this.deleteBooks(bookId);
     }
