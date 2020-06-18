@@ -36,6 +36,9 @@ export class BookService {
     deleteBook(bookId) {
         return this.httpClient.delete(`${this.baseurl}/book/${bookId}`).pipe(retry(1), catchError(this.handleError));
     }
+    downloadBook(docId: string) {
+        return this.httpClient.get(`${this.baseurl}/download/${docId.replace('Uploads/', '')}`, { responseType: 'text' }).pipe(retry(1), catchError(this.handleError));
+    }
     createNewBook(formData) {
         return this.httpClient.post(`${this.baseurl}/book`, formData, { responseType: 'text' }).pipe(retry(0), catchError(this.handleError));
     }

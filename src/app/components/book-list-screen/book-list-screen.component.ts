@@ -79,6 +79,21 @@ export class BookListScreenComponent implements OnInit {
         this.deleteBooks(bookId);
     }
 
+    clickOnDownload(docId) {
+        this.downloadBooks(docId);
+    }
+
+    downloadBooks(docId) {
+        this.spinner.show();
+        this.bookService.downloadBook(docId).subscribe(
+            (data) => {},
+            (error) => {
+                console.log('Error: ', error);
+                this.spinner.hide();
+            }
+        );
+    }
+
     deleteBooks(bookId) {
         this.spinner.show();
         this.bookService.deleteBook(bookId).subscribe(
