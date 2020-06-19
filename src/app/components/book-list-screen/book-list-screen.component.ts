@@ -18,6 +18,8 @@ export class BookListScreenComponent implements OnInit {
         bookName: '',
         bookAuthor: '',
         bookPublisher: '',
+        adminApproval: '',
+        publisherApproval: '',
     };
     bookToView: any;
 
@@ -45,6 +47,8 @@ export class BookListScreenComponent implements OnInit {
                     bookName: '',
                     bookAuthor: '',
                     bookPublisher: '',
+                    adminApproval: '',
+                    publisherApproval: '',
                 };
                 this.fetchBooks();
             },
@@ -64,6 +68,8 @@ export class BookListScreenComponent implements OnInit {
                     bookName: '',
                     bookAuthor: '',
                     bookPublisher: '',
+                    adminApproval: '',
+                    publisherApproval: '',
                 };
                 this.fetchBooks();
             },

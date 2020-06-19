@@ -16,6 +16,7 @@ export class UserListScreenComponent implements OnInit {
         role: '',
         mobile_no: '',
         password: '',
+        status: '',
     };
 
     functionOnSubmit() {
@@ -28,6 +29,7 @@ export class UserListScreenComponent implements OnInit {
                     role: '',
                     mobile_no: '',
                     password: '',
+                    status: '',
                 };
                 this.fetchUsers();
             },

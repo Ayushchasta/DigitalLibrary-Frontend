@@ -1,7 +1,7 @@
 <ng-template #content let-c="close" let-d="dismiss">
     <div class="modal-header text-white bg-dark">
         <h4 class="modal-title" id="modal-basic-title">Hey, Got new book!</h4>
-        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <button type="button" class="close text-white" style="outline: none;" aria-label="Close" (click)="d('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
@@ -44,6 +44,7 @@
                         <th scope="col">Role</th>
                         <th scope="col">Mobile No.</th>
                         <th scope="col">Password</th>
+                        <th scope="col">Status</th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
@@ -54,12 +55,13 @@
                         <td>{{ user.role }}</td>
                         <td>{{ user.mobile_no }}</td>
                         <td>{{ user.password }}</td>
+                        <td>{{ user.status }}</td>
                         <td>
-                            <button class="btn btn-sm btn-info m-1" disabled>
-                                <i class="fa fa-eye" aria-hidden="true"></i>
-                            </button>
                             <button class="btn btn-sm btn-success m-1" disabled>
-                                <i class="fa fa-download" aria-hidden="true"></i>
+                                <i class="fa fa-check" aria-hidden="true"></i>
+                            </button>
+                            <button class="btn btn-sm btn-danger m-1" disabled>
+                                <i class="fa fa-times" aria-hidden="true"></i>
                             </button>
                             <button class="btn btn-sm btn-danger m-1" (click)="clickOnDelete(user.id)">
                                 <i class="fa fa-trash"></i>
@@ -67,7 +69,7 @@
                         </td>
                     </tr>
                     <tr class="text-center">
-                        <td colspan="5"></td>
+                        <td colspan="6"></td>
                         <td>
                             <button class="btn btn-sm btn-info m-1" (click)="open(content)">
                                 Add New
