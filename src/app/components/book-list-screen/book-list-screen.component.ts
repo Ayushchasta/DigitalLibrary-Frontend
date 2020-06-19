@@ -25,7 +25,7 @@ export class BookListScreenComponent implements OnInit {
 
     getBookURL() {
         let fn = this.bookToView.fileName.replace('Uploads/', '');
-        return this.sanitizer.bypassSecurityTrustResourceUrl(`http://localhost:8000/view/${fn}`);
+        return this.sanitizer.bypassSecurityTrustResourceUrl(`http://localhost:8000/View/${fn}`);
     }
 
     onFileSelected(event) {

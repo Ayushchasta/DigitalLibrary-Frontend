@@ -28,15 +28,15 @@ export class UserService {
     }
 
     createNewUser(newUser) {
-        return this.httpClient.post(`${this.baseurl}/user/`, newUser).pipe(retry(1), catchError(this.handleError));
+        return this.httpClient.post(`${this.baseurl}/User/`, newUser).pipe(retry(1), catchError(this.handleError));
     }
 
     getUserList() {
-        return this.httpClient.get(`${this.baseurl}/users/`).pipe(retry(1), catchError(this.handleError));
+        return this.httpClient.get(`${this.baseurl}/Users/`).pipe(retry(1), catchError(this.handleError));
     }
 
     deleteUser(userId) {
-        return this.httpClient.delete(`${this.baseurl}/user/${userId}`).pipe(retry(1), catchError(this.handleError));
+        return this.httpClient.delete(`${this.baseurl}/User/${userId}`).pipe(retry(1), catchError(this.handleError));
     }
 
     updateStatus(userId, status) {

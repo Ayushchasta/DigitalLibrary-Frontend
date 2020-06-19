@@ -63,6 +63,8 @@
                         <th scope="col">Publisher</th>
                         <th scope="col">Admin Approval</th>
                         <th scope="col">Publisher Approval</th>
+                        <th scope="col">Views</th>
+                        <th scope="col">Downloads</th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
@@ -74,7 +76,8 @@
                         <td>{{ book.publisher }}</td>
                         <td>{{ book.adminApproval == 1 ? 'APPROVED' : 'PENDING' }}</td>
                         <td>{{ book.publisherApproval == 1 ? 'APPROVED' : 'PENDING' }}</td>
-
+                        <td>{{ book.countView }}</td>
+                        <td>{{ book.countDownload }}</td>
                         <td>
                             <button class="btn btn-sm btn-success m-1" (click)="clickOnAdminStatus(book.id, 1)">
                                 <i class="fa fa-check" aria-hidden="true"></i>
@@ -85,7 +88,7 @@
                             <button class="btn btn-sm btn-info m-1" (click)="openXl(viewpdfcontent); bookToView = book">
                                 <i class="fa fa-eye" aria-hidden="true"></i>
                             </button>
-                            <a href="http://localhost:8000/download/{{ book.fileName.replace('Uploads/', '') }}?bookName={{ book.bookName }}" download>
+                            <a href="http://localhost:8000/Download/{{ book.fileName.replace('Uploads/', '') }}?bookName={{ book.bookName }}" download>
                                 <button class="btn btn-sm btn-success m-1">
                                     <i class="fa fa-download" aria-hidden="true"></i>
                                 </button>
@@ -96,7 +99,7 @@
                         </td>
                     </tr>
                     <tr class="text-center">
-                        <td colspan="6"></td>
+                        <td colspan="8"></td>
                         <td>
                             <button class="btn btn-sm btn-info m-1" (click)="open(content)">
                                 Add New

@@ -28,19 +28,19 @@ export class BookService {
     }
 
     createNewBookOld(newBook) {
-        return this.httpClient.post(`${this.baseurl}/book/`, newBook).pipe(retry(1), catchError(this.handleError));
+        return this.httpClient.post(`${this.baseurl}/Book/`, newBook).pipe(retry(1), catchError(this.handleError));
     }
     getBookList() {
-        return this.httpClient.get(`${this.baseurl}/books/`).pipe(retry(1), catchError(this.handleError));
+        return this.httpClient.get(`${this.baseurl}/Books/`).pipe(retry(1), catchError(this.handleError));
     }
     deleteBook(bookId) {
-        return this.httpClient.delete(`${this.baseurl}/book/${bookId}`).pipe(retry(1), catchError(this.handleError));
+        return this.httpClient.delete(`${this.baseurl}/Book/${bookId}`).pipe(retry(1), catchError(this.handleError));
     }
     downloadBook(docId: string) {
-        return this.httpClient.get(`${this.baseurl}/download/${docId.replace('Uploads/', '')}`, { responseType: 'text' }).pipe(retry(1), catchError(this.handleError));
+        return this.httpClient.get(`${this.baseurl}/Download/${docId.replace('Uploads/', '')}`, { responseType: 'text' }).pipe(retry(1), catchError(this.handleError));
     }
     createNewBook(formData) {
-        return this.httpClient.post(`${this.baseurl}/book`, formData, { responseType: 'text' }).pipe(retry(0), catchError(this.handleError));
+        return this.httpClient.post(`${this.baseurl}/Book`, formData, { responseType: 'text' }).pipe(retry(0), catchError(this.handleError));
     }
     verifyAdminStatus(bookId, adminStatus) {
         return this.httpClient.put(`${this.baseurl}/Book/${bookId}/${adminStatus}`, '').pipe(retry(1), catchError(this.handleError));
