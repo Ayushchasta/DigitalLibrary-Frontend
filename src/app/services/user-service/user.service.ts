@@ -38,4 +38,8 @@ export class UserService {
     deleteUser(userId) {
         return this.httpClient.delete(`${this.baseurl}/user/${userId}`).pipe(retry(1), catchError(this.handleError));
     }
+
+    updateStatus(userId, status) {
+        return this.httpClient.put(`${this.baseurl}/User/${userId}/${status}`, '').pipe(retry(1), catchError(this.handleError));
+    }
 }

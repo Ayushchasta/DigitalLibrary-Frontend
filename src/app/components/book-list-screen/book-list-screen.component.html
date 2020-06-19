@@ -72,10 +72,16 @@
                         <td>{{ book.bookName }}</td>
                         <td>{{ book.author }}</td>
                         <td>{{ book.publisher }}</td>
-                        <td>{{ book.adminApproval }}</td>
-                        <td>{{ book.publisherApproval }}</td>
+                        <td>{{ book.adminApproval == 1 ? 'APPROVED' : 'PENDING' }}</td>
+                        <td>{{ book.publisherApproval == 1 ? 'APPROVED' : 'PENDING' }}</td>
 
                         <td>
+                            <button class="btn btn-sm btn-success m-1" (click)="clickOnAdminStatus(book.id, 1)">
+                                <i class="fa fa-check" aria-hidden="true"></i>
+                            </button>
+                            <button class="btn btn-sm btn-danger m-1" (click)="clickOnAdminStatus(book.id, 0)">
+                                <i class="fa fa-times" aria-hidden="true"></i>
+                            </button>
                             <button class="btn btn-sm btn-info m-1" (click)="openXl(viewpdfcontent); bookToView = book">
                                 <i class="fa fa-eye" aria-hidden="true"></i>
                             </button>

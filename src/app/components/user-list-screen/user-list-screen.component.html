@@ -1,6 +1,6 @@
 <ng-template #content let-c="close" let-d="dismiss">
     <div class="modal-header text-white bg-dark">
-        <h4 class="modal-title" id="modal-basic-title">Hey, Got new book!</h4>
+        <h4 class="modal-title" id="modal-basic-title">Hey, Got new user!</h4>
         <button type="button" class="close text-white" style="outline: none;" aria-label="Close" (click)="d('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -57,10 +57,10 @@
                         <td>{{ user.password }}</td>
                         <td>{{ user.status }}</td>
                         <td>
-                            <button class="btn btn-sm btn-success m-1" disabled>
+                            <button class="btn btn-sm btn-success m-1" (click)="clickOnUpdateStatus(user.id, 'ACTIVATE')">
                                 <i class="fa fa-check" aria-hidden="true"></i>
                             </button>
-                            <button class="btn btn-sm btn-danger m-1" disabled>
+                            <button class="btn btn-sm btn-danger m-1" (click)="clickOnUpdateStatus(user.id, 'INACTIVATE')">
                                 <i class="fa fa-times" aria-hidden="true"></i>
                             </button>
                             <button class="btn btn-sm btn-danger m-1" (click)="clickOnDelete(user.id)">

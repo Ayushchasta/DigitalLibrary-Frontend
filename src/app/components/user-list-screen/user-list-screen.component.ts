@@ -50,6 +50,23 @@ export class UserListScreenComponent implements OnInit {
         this.deleteUsers(userId);
     }
 
+    clickOnUpdateStatus(userId, status) {
+        this.updateStatus(userId, status);
+    }
+
+    updateStatus(userId, status) {
+        this.spinner.show();
+        this.UserService.updateStatus(userId, status).subscribe(
+            (data) => {
+                this.fetchUsers();
+            },
+            (error) => {
+                console.log('Error: ', error);
+                this.spinner.hide();
+            }
+        );
+    }
+
     deleteUsers(userId) {
         this.spinner.show();
         this.UserService.deleteUser(userId).subscribe(

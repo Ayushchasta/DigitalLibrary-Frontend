@@ -33,6 +33,23 @@ export class BookListScreenComponent implements OnInit {
         this.fileToUpload = <File>event.target.files[0];
     }
 
+    clickOnAdminStatus(bookId, adminStatus) {
+        this.CheckAdminStatus(bookId, adminStatus);
+    }
+
+    CheckAdminStatus(bookId, adminStatus) {
+        this.spinner.show();
+        this.bookService.verifyAdminStatus(bookId, adminStatus).subscribe(
+            (data) => {
+                this.fetchBooks();
+            },
+            (error) => {
+                console.log('Error: ', error);
+                this.spinner.hide();
+            }
+        );
+    }
+
     functionOnSubmit() {
         this.spinner.show();
         const formData = new FormData();

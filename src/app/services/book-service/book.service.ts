@@ -42,4 +42,7 @@ export class BookService {
     createNewBook(formData) {
         return this.httpClient.post(`${this.baseurl}/book`, formData, { responseType: 'text' }).pipe(retry(0), catchError(this.handleError));
     }
+    verifyAdminStatus(bookId, adminStatus) {
+        return this.httpClient.put(`${this.baseurl}/Book/${bookId}/${adminStatus}`, '').pipe(retry(1), catchError(this.handleError));
+    }
 }
