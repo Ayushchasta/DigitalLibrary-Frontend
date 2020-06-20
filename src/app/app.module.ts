@@ -16,10 +16,13 @@ import { AboutusScreenComponent } from './components/aboutus-screen/aboutus-scre
 import { FooterComponentComponent } from './components/footer-component/footer-component.component';
 import { BookListScreenComponent } from './components/book-list-screen/book-list-screen.component';
 import { UserListScreenComponent } from './components/user-list-screen/user-list-screen.component';
+import { BookListPublisherScreenComponent } from './components/book-list-publisher-screen/book-list-publisher-screen.component';
+import { BookListUserScreenComponent } from './components/book-list-user-screen/book-list-user-screen.component';
+import { LoginScreenComponent } from './components/login-screen/login-screen.component';
 
 @NgModule({
     imports: [BrowserModule, BrowserAnimationsModule, HttpClientModule, AppRoutingModule, NgbModule, NgxSpinnerModule, FormsModule],
-    declarations: [AppComponent, NavbarComponentComponent, HomeScreenComponent, AboutusScreenComponent, FooterComponentComponent, BookListScreenComponent, UserListScreenComponent],
+    declarations: [AppComponent, NavbarComponentComponent, HomeScreenComponent, AboutusScreenComponent, FooterComponentComponent, BookListScreenComponent, UserListScreenComponent, BookListPublisherScreenComponent, BookListUserScreenComponent, LoginScreenComponent],
     providers: [],
     bootstrap: [AppComponent],
 })
