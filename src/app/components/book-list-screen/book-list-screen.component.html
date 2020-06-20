@@ -58,6 +58,7 @@
                 <thead class="thead-dark">
                     <tr class="text-center">
                         <th scope="col">ID</th>
+                        <th scope="col">Uploader</th>
                         <th scope="col">Book Name</th>
                         <th scope="col">Author</th>
                         <th scope="col">Publisher</th>
@@ -71,6 +72,9 @@
                 <tbody>
                     <tr *ngFor="let book of bookList" class="text-center">
                         <td>{{ book.id }}</td>
+                        <td>
+                            <span ngbTooltip="{{ book.uploaderId }}">{{ book.name }}</span>
+                        </td>
                         <td>{{ book.bookName }}</td>
                         <td>{{ book.author }}</td>
                         <td>{{ book.publisher }}</td>
@@ -85,7 +89,7 @@
                             <button class="btn btn-sm btn-danger m-1" (click)="clickOnAdminStatus(book.id, 0)">
                                 <i class="fa fa-times" aria-hidden="true"></i>
                             </button>
-                            <button class="btn btn-sm btn-info m-1" (click)="openXl(viewpdfcontent); bookToView = book">
+                            <button class="btn btn-sm btn-info m-1" (click)="bookToView = book; openXl(viewpdfcontent)">
                                 <i class="fa fa-eye" aria-hidden="true"></i>
                             </button>
                             <a href="http://localhost:8000/Download/{{ book.fileName.replace('Uploads/', '') }}?bookName={{ book.bookName }}" download>
@@ -99,7 +103,7 @@
                         </td>
                     </tr>
                     <tr class="text-center">
-                        <td colspan="8"></td>
+                        <td colspan="9"></td>
                         <td>
                             <button class="btn btn-sm btn-info m-1" (click)="open(content)">
                                 Add New
