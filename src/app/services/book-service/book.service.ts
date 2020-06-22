@@ -31,7 +31,7 @@ export class BookService {
         return this.httpClient.post(`${this.baseurl}/Book/`, newBook).pipe(retry(1), catchError(this.handleError));
     }
     getBookList() {
-        return this.httpClient.get(`${this.baseurl}/Books/`).pipe(retry(1), catchError(this.handleError));
+        return this.httpClient.get(`${this.baseurl}/Books/AllPublished`).pipe(retry(1), catchError(this.handleError));
     }
     deleteBook(bookId) {
         return this.httpClient.delete(`${this.baseurl}/Book/${bookId}`).pipe(retry(1), catchError(this.handleError));

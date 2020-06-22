@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxSpinnerModule } from 'ngx-spinner';
 
@@ -19,11 +19,12 @@ import { UserListScreenComponent } from './components/user-list-screen/user-list
 import { BookListPublisherScreenComponent } from './components/book-list-publisher-screen/book-list-publisher-screen.component';
 import { BookListUserScreenComponent } from './components/book-list-user-screen/book-list-user-screen.component';
 import { LoginScreenComponent } from './components/login-screen/login-screen.component';
+import { Interceptor } from './helpers/interceptor';
 
 @NgModule({
     imports: [BrowserModule, BrowserAnimationsModule, HttpClientModule, AppRoutingModule, NgbModule, NgxSpinnerModule, FormsModule],
     declarations: [AppComponent, NavbarComponentComponent, HomeScreenComponent, AboutusScreenComponent, FooterComponentComponent, BookListScreenComponent, UserListScreenComponent, BookListPublisherScreenComponent, BookListUserScreenComponent, LoginScreenComponent],
-    providers: [],
+    providers: [{ provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

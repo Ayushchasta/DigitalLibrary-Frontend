@@ -22,7 +22,7 @@ export class UserListScreenComponent implements OnInit {
     functionOnSubmit() {
         this.spinner.show();
         console.log('functionOnSubmit', this.newUser);
-        this.UserService.createNewUser(this.newUser).subscribe(
+        this.userService.createNewUser(this.newUser).subscribe(
             (data) => {
                 this.newUser = {
                     name: '',
@@ -40,7 +40,7 @@ export class UserListScreenComponent implements OnInit {
         );
     }
 
-    constructor(config: NgbModalConfig, private modalService: NgbModal, private spinner: NgxSpinnerService, private UserService: UserService) {}
+    constructor(config: NgbModalConfig, private modalService: NgbModal, private spinner: NgxSpinnerService, private userService: UserService) {}
 
     open(content) {
         this.modalService.open(content);
@@ -56,7 +56,7 @@ export class UserListScreenComponent implements OnInit {
 
     updateStatus(userId, status) {
         this.spinner.show();
-        this.UserService.updateStatus(userId, status).subscribe(
+        this.userService.updateStatus(userId, status).subscribe(
             (data) => {
                 this.fetchUsers();
             },
@@ -69,7 +69,7 @@ export class UserListScreenComponent implements OnInit {
 
     deleteUsers(userId) {
         this.spinner.show();
-        this.UserService.deleteUser(userId).subscribe(
+        this.userService.deleteUser(userId).subscribe(
             (data) => {
                 this.fetchUsers();
             },
@@ -82,7 +82,7 @@ export class UserListScreenComponent implements OnInit {
 
     fetchUsers() {
         this.spinner.show();
-        this.UserService.getUserList().subscribe(
+        this.userService.getUserList().subscribe(
             (data) => {
                 this.userList = data;
                 console.log(this.userList);
