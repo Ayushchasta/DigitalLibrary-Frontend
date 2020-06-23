@@ -139,7 +139,7 @@ export class BookListUserScreenComponent implements OnInit {
 
     fetchBooks() {
         this.spinner.show();
-        this.bookService.getBookList().subscribe(
+        this.bookService.getActiveBookList().subscribe(
             (data) => {
                 this.bookList = data;
                 console.log('fetchBooks()', this.bookList);

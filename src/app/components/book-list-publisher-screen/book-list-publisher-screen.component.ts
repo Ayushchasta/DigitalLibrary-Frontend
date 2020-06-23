@@ -50,6 +50,23 @@ export class BookListPublisherScreenComponent implements OnInit {
         );
     }
 
+    clickOnPublisherStatus(bookId, publisherStatus) {
+        this.CheckPublisherStatus(bookId, publisherStatus);
+    }
+
+    CheckPublisherStatus(bookId, publisherStatus) {
+        this.spinner.show();
+        this.bookService.verifyPublisherStatus(bookId, publisherStatus).subscribe(
+            (data) => {
+                this.fetchBooks();
+            },
+            (error) => {
+                console.log('Error: ', error);
+                this.spinner.hide();
+            }
+        );
+    }
+
     functionOnSubmit() {
         this.spinner.show();
         const formData = new FormData();
@@ -139,7 +156,7 @@ export class BookListPublisherScreenComponent implements OnInit {
 
     fetchBooks() {
         this.spinner.show();
-        this.bookService.getBookList().subscribe(
+        this.bookService.getPublisherBooks().subscribe(
             (data) => {
                 this.bookList = data;
                 console.log('fetchBooks()', this.bookList);

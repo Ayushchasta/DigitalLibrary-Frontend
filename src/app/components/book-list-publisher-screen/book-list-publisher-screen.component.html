@@ -73,7 +73,7 @@
                     <tr *ngFor="let book of bookList" class="text-center">
                         <td>{{ book.id }}</td>
                         <td>
-                            <span ngbTooltip="{{ book.uploaderId }}">{{ book.uploaderName }}</span>
+                            <span ngbTooltip="{{ book.uploaderId }}">{{ book.uploaderId }}</span>
                         </td>
                         <td>{{ book.bookName }}</td>
                         <td>{{ book.author }}</td>
@@ -83,10 +83,10 @@
                         <td>{{ book.countView }}</td>
                         <td>{{ book.countDownload }}</td>
                         <td>
-                            <button class="btn btn-sm btn-success m-1" (click)="clickOnAdminStatus(book.id, 1)">
+                            <button class="btn btn-sm btn-success m-1" (click)="clickOnPublisherStatus(book.id, 1)">
                                 <i class="fa fa-check" aria-hidden="true"></i>
                             </button>
-                            <button class="btn btn-sm btn-danger m-1" (click)="clickOnAdminStatus(book.id, 0)">
+                            <button class="btn btn-sm btn-danger m-1" (click)="clickOnPublisherStatus(book.id, 0)">
                                 <i class="fa fa-times" aria-hidden="true"></i>
                             </button>
                             <button class="btn btn-sm btn-info m-1" (click)="bookToView = book; openXl(viewpdfcontent)">

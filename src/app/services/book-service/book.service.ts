@@ -33,6 +33,9 @@ export class BookService {
     getBookList() {
         return this.httpClient.get(`${this.baseurl}/Books/AllPublished`).pipe(retry(1), catchError(this.handleError));
     }
+    getActiveBookList() {
+        return this.httpClient.get(`${this.baseurl}/ActiveBooks/`).pipe(retry(1), catchError(this.handleError));
+    }
     deleteBook(bookId) {
         return this.httpClient.delete(`${this.baseurl}/Book/${bookId}`).pipe(retry(1), catchError(this.handleError));
     }
@@ -43,6 +46,12 @@ export class BookService {
         return this.httpClient.post(`${this.baseurl}/Book`, formData, { responseType: 'text' }).pipe(retry(0), catchError(this.handleError));
     }
     verifyAdminStatus(bookId, adminStatus) {
-        return this.httpClient.put(`${this.baseurl}/Book/${bookId}/${adminStatus}`, '').pipe(retry(1), catchError(this.handleError));
+        return this.httpClient.put(`${this.baseurl}/BookAdminApproval/${bookId}/${adminStatus}`, '').pipe(retry(1), catchError(this.handleError));
+    }
+    getPublisherBooks() {
+        return this.httpClient.get(`${this.baseurl}/Books/MyPublished`).pipe(retry(1), catchError(this.handleError));
+    }
+    verifyPublisherStatus(bookId, publisherStatus) {
+        return this.httpClient.put(`${this.baseurl}/BookPublisherApproval/${bookId}/${publisherStatus}`, '').pipe(retry(1), catchError(this.handleError));
     }
 }
