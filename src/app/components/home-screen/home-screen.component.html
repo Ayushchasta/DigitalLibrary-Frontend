@@ -1,2 +1,5 @@
 <h1>Digital Library</h1>
+<h1 *ngIf="user != null">{{ user.name }}</h1>
+
+<h1 *ngIf="user == null">Guest</h1>
 <!--<p>I am Digital Library</p>-->

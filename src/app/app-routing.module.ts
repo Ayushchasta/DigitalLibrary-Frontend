@@ -7,6 +7,7 @@ import { UserListScreenComponent } from './components/user-list-screen/user-list
 import { BookListPublisherScreenComponent } from './components/book-list-publisher-screen/book-list-publisher-screen.component';
 import { BookListUserScreenComponent } from './components/book-list-user-screen/book-list-user-screen.component';
 import { LoginScreenComponent } from './components/login-screen/login-screen.component';
+import { AuthGuard } from './helpers/auth.guard';
 
 const routes: Routes = [
     {
@@ -20,18 +21,22 @@ const routes: Routes = [
     {
         path: 'users',
         component: UserListScreenComponent,
+        canActivate: [AuthGuard],
     },
     {
         path: 'books',
         component: BookListScreenComponent,
+        canActivate: [AuthGuard],
     },
     {
         path: 'publisherbooks',
         component: BookListPublisherScreenComponent,
+        canActivate: [AuthGuard],
     },
     {
         path: 'userbooks',
         component: BookListUserScreenComponent,
+        canActivate: [AuthGuard],
     },
     {
         path: 'login',

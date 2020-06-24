@@ -4,6 +4,9 @@ import { BookService } from 'src/app/services/book-service/book.service';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { DomSanitizer } from '@angular/platform-browser';
+import { UserService } from 'src/app/services/user-service/user.service';
+import { AuthenticationService } from 'src/app/services/authentication-service/authentication.service';
+import { User } from 'src/app/modals/user';
 
 @Component({
     selector: 'app-book-list-user-screen',
@@ -14,6 +17,7 @@ export class BookListUserScreenComponent implements OnInit {
     bookList: any = [];
     fileToUpload: File;
 
+    user: User = null;
     newBook = {
         bookName: '',
         bookAuthor: '',
@@ -25,7 +29,7 @@ export class BookListUserScreenComponent implements OnInit {
 
     getBookURL() {
         let fn = this.bookToView.fileName.replace('Uploads/', '');
-        return this.sanitizer.bypassSecurityTrustResourceUrl(`http://localhost:8000/View/${fn}`);
+        return this.sanitizer.bypassSecurityTrustResourceUrl(`http://localhost:8000/View/${fn}?user_id=${this.user.id}&user_token=${this.user.token}`);
     }
 
     onFileSelected(event) {
@@ -97,7 +101,9 @@ export class BookListUserScreenComponent implements OnInit {
         );
     }
 
-    constructor(private sanitizer: DomSanitizer, config: NgbModalConfig, private modalService: NgbModal, private spinner: NgxSpinnerService, private bookService: BookService) {}
+    constructor(private sanitizer: DomSanitizer, config: NgbModalConfig, private modalService: NgbModal, private spinner: NgxSpinnerService, private bookService: BookService, private authenticationService: AuthenticationService) {
+        this.authenticationService.currentUser.subscribe((x) => (this.user = x));
+    }
 
     open(content) {
         this.modalService.open(content);

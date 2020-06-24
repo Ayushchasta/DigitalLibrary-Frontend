@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication-service/authentication.service';
+import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
     selector: 'app-login-screen',
@@ -14,22 +16,28 @@ export class LoginScreenComponent implements OnInit {
 
     functionOnSubmit() {
         console.log('functionOnSubmit', this.userLogin);
+        this.spinner.show();
 
         this.authenticationService.login(this.userLogin.mobile_no, this.userLogin.password).subscribe(
             (data) => {
                 if (data == null) {
+                    this.spinner.hide();
                     alert('Invalid');
                 } else {
-                    alert('Valid -> Redirecting');
+                    this.spinner.hide();
+                    if (this.authenticationService.currentUserValue) {
+                        this.router.navigate(['/']);
+                    }
                 }
             },
             (error) => {
+                this.spinner.hide();
                 alert('Id or Password Invalid');
             }
         );
     }
 
-    constructor(private authenticationService: AuthenticationService) {}
+    constructor(private spinner: NgxSpinnerService, private authenticationService: AuthenticationService, private router: Router) {}
 
     ngOnInit(): void {}
 }

@@ -79,7 +79,7 @@
                             <button class="btn btn-sm btn-info m-1" (click)="bookToView = book; openXl(viewpdfcontent)">
                                 <i class="fa fa-eye" aria-hidden="true"></i>
                             </button>
-                            <a href="http://localhost:8000/Download/{{ book.fileName.replace('Uploads/', '') }}?bookName={{ book.bookName }}" download>
+                            <a href="http://localhost:8000/Download/{{ book.fileName.replace('Uploads/', '') }}?bookName={{ book.bookName }}&user_id={{ user.id }}&user_token={{ user.token }}" download>
                                 <button class="btn btn-sm btn-success m-1">
                                     <i class="fa fa-download" aria-hidden="true"></i>
                                 </button>
