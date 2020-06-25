@@ -8,6 +8,7 @@ import { BookListPublisherScreenComponent } from './components/book-list-publish
 import { BookListUserScreenComponent } from './components/book-list-user-screen/book-list-user-screen.component';
 import { LoginScreenComponent } from './components/login-screen/login-screen.component';
 import { AuthGuard } from './helpers/auth.guard';
+import { SignUpScreenComponent } from './components/sign-up-screen/sign-up-screen.component';
 
 const routes: Routes = [
     {
@@ -41,6 +42,10 @@ const routes: Routes = [
     {
         path: 'login',
         component: LoginScreenComponent,
+    },
+    {
+        path: 'signup',
+        component: SignUpScreenComponent,
     },
 ];
 

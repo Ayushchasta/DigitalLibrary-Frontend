@@ -20,10 +20,11 @@ import { BookListPublisherScreenComponent } from './components/book-list-publish
 import { BookListUserScreenComponent } from './components/book-list-user-screen/book-list-user-screen.component';
 import { LoginScreenComponent } from './components/login-screen/login-screen.component';
 import { Interceptor } from './helpers/interceptor';
+import { SignUpScreenComponent } from './components/sign-up-screen/sign-up-screen.component';
 
 @NgModule({
     imports: [BrowserModule, BrowserAnimationsModule, HttpClientModule, AppRoutingModule, NgbModule, NgxSpinnerModule, FormsModule],
-    declarations: [AppComponent, NavbarComponentComponent, HomeScreenComponent, AboutusScreenComponent, FooterComponentComponent, BookListScreenComponent, UserListScreenComponent, BookListPublisherScreenComponent, BookListUserScreenComponent, LoginScreenComponent],
+    declarations: [AppComponent, NavbarComponentComponent, HomeScreenComponent, AboutusScreenComponent, FooterComponentComponent, BookListScreenComponent, UserListScreenComponent, BookListPublisherScreenComponent, BookListUserScreenComponent, LoginScreenComponent, SignUpScreenComponent],
     providers: [{ provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }],
     bootstrap: [AppComponent],
 })
