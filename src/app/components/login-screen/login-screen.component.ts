@@ -39,5 +39,9 @@ export class LoginScreenComponent implements OnInit {
 
     constructor(private spinner: NgxSpinnerService, private authenticationService: AuthenticationService, private router: Router) {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        if (this.authenticationService.currentUserValue) {
+            this.router.navigate(['/']);
+        }
+    }
 }

@@ -1,33 +1,35 @@
-<div class="card" style="width: 50%; border-radius: 10px; border: transparent;">
-    <h5 class="card-header text-white" style="border-radius: 10px; margin: 0; background-color: rgba(0, 0, 0, 0.7);">
-        Login Form
-    </h5>
-    <article class="card-body">
-        <a href="" class="float-right btn btn-outline-primary">Sign up</a>
-        <h4 class="card-title mb-4 mt-1">Sign in</h4>
-        <form>
-            <div class="form-group">
-                <label>Your Mobile No.</label>
-                <input [(ngModel)]="userLogin.mobile_no" name="mobileNo" class="form-control" placeholder="Mobile No." type="number" />
-            </div>
-            <!-- form-group// -->
-            <div class="form-group">
-                <a class="float-right" href="#">Forgot?</a>
-                <label>Your password</label>
-                <input [(ngModel)]="userLogin.password" name="password" class="form-control" placeholder="******" type="password" />
-            </div>
-            <!-- form-group// -->
-            <div class="form-group">
-                <div class="checkbox">
-                    <label> <input type="checkbox" /> Save password </label>
+<div class="col-md-4 col-12" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);">
+    <div class="card" style="border-radius: 10px; border: transparent;">
+        <h5 class="card-header text-white" style="border-radius: 10px; margin: 0; background-color: rgba(0, 0, 0, 0.7);">
+            Login Form
+        </h5>
+        <article class="card-body">
+            <a href="" class="float-right btn btn-outline-primary">Sign up</a>
+            <h4 class="card-title mb-4 mt-1">Sign in</h4>
+            <form>
+                <div class="form-group">
+                    <label>Your Mobile No.</label>
+                    <input [(ngModel)]="userLogin.mobile_no" name="mobileNo" class="form-control" placeholder="Mobile No." type="number" />
                 </div>
-                <!-- checkbox .// -->
-            </div>
-            <!-- form-group// -->
-            <div class="form-group">
-                <button type="submit" name="loginbutton" class="btn btn-primary btn-block" (click)="functionOnSubmit()">Login</button>
-            </div>
-            <!-- form-group// -->
-        </form>
-    </article>
+                <!-- form-group// -->
+                <div class="form-group">
+                    <a class="float-right" href="#">Forgot?</a>
+                    <label>Your password</label>
+                    <input [(ngModel)]="userLogin.password" name="password" class="form-control" placeholder="******" type="password" />
+                </div>
+                <!-- form-group// -->
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label> <input type="checkbox" /> Save password </label>
+                    </div>
+                    <!-- checkbox .// -->
+                </div>
+                <!-- form-group// -->
+                <div class="form-group">
+                    <button type="submit" name="loginbutton" class="btn btn-primary btn-block" (click)="functionOnSubmit()">Login</button>
+                </div>
+                <!-- form-group// -->
+            </form>
+        </article>
+    </div>
 </div>
