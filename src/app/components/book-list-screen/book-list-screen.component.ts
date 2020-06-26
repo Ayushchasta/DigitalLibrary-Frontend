@@ -34,10 +34,7 @@ export class BookListScreenComponent implements OnInit {
     }
 
     onFileSelected(event) {
-        //console.log('onFileSelected => ', event);
         this.fileToUpload = <File>event.target.files[0];
-        console.log('fileToUpload => ', this.fileToUpload);
-        console.log('file Name => ', this.fileToUpload.name);
     }
 
     clickOnAdminStatus(bookId, adminStatus) {
@@ -51,7 +48,6 @@ export class BookListScreenComponent implements OnInit {
                 this.fetchBooks();
             },
             (error) => {
-                console.log('Error: ', error);
                 this.spinner.hide();
             }
         );
@@ -64,7 +60,6 @@ export class BookListScreenComponent implements OnInit {
         formData.append('bookPublisher', this.newBook.bookPublisher);
         formData.append('bookAuthor', this.newBook.bookAuthor);
         formData.append('file', this.fileToUpload);
-        console.log('functionOnSubmit => ', formData.getAll('bookName'));
         this.bookService.createNewBook(formData).subscribe(
             (data) => {
                 this.newBook = {
@@ -76,16 +71,12 @@ export class BookListScreenComponent implements OnInit {
                 };
                 this.fetchBooks();
             },
-            (error) => {
-                console.log('Error: ', error);
-                this.spinner.hide();
-            }
+            (error) => {}
         );
     }
 
     functionOnSubmitOld() {
         this.spinner.show();
-        console.log('functionOnSubmit', this.newBook);
         this.bookService.createNewBook(this.newBook).subscribe(
             (data) => {
                 this.newBook = {
@@ -98,7 +89,6 @@ export class BookListScreenComponent implements OnInit {
                 this.fetchBooks();
             },
             (error) => {
-                console.log('Error: ', error);
                 this.spinner.hide();
             }
         );
@@ -129,7 +119,6 @@ export class BookListScreenComponent implements OnInit {
         this.bookService.downloadBook(docId).subscribe(
             (data) => {},
             (error) => {
-                console.log('Error: ', error);
                 this.spinner.hide();
             }
         );
@@ -142,7 +131,6 @@ export class BookListScreenComponent implements OnInit {
                 this.fetchBooks();
             },
             (error) => {
-                console.log('Error: ', error);
                 this.spinner.hide();
             }
         );
@@ -153,12 +141,10 @@ export class BookListScreenComponent implements OnInit {
         this.bookService.getBookList().subscribe(
             (data) => {
                 this.bookList = data;
-                console.log('fetchBooks()', this.bookList);
                 this.totalRecords = this.bookList.length;
                 this.spinner.hide();
             },
             (error) => {
-                console.log('Error: ', error);
                 this.spinner.hide();
             }
         );

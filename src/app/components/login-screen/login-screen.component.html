@@ -1,20 +1,30 @@
 <div class="box row justify-content-center" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);">
-    <form class="form-container bg-white p-4 m-4">
+    <form [formGroup]="loginForm" (ngSubmit)="functionOnSubmit()" class="form-container bg-white p-4 m-4">
         <h2 class="text-dark text-center pb-3">Login Account</h2>
         <div class="form-group color-Gainsboro">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
-                <input [(ngModel)]="userLogin.mobile_no" name="mobileNo" class="form-control" placeholder="Mobile No." type="number" />
+                <input [ngClass]="{ 'is-invalid': submitted && f.mobileNo.errors }" formControlName="mobileNo" class="form-control" placeholder="Mobile No." type="number" />
+
+                <div *ngIf="submitted && f.mobileNo.errors" class="invalid-feedback">
+                    <div *ngIf="f.mobileNo.errors.required">MobileNo is required</div>
+                    <div *ngIf="!f.mobileNo.errors.required">MobileNo is invalid</div>
+                </div>
             </div>
         </div>
         <div class="form-group">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                <input [(ngModel)]="userLogin.password" name="password" class="form-control" placeholder="******" type="password" />
+                <input [ngClass]="{ 'is-invalid': submitted && f.password.errors }" formControlName="password" class="form-control" placeholder="******" type="password" />
+
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors.required">Password is required</div>
+                    <div *ngIf="!f.password.errors.required">Password is invalid</div>
+                </div>
             </div>
         </div>
         <div class="form-group">
-            <button type="submit" name="loginbutton" class="btn btn-primary btn-block" (click)="functionOnSubmit()">Login</button>
+            <button type="submit" [disabled]="submitted && this.loginForm.invalid" class="btn btn-primary btn-block">Login</button>
         </div>
         <p class="small text-center">By clicking the Sign Up button, you agree to our <br /><a routerLink="/terms">Terms &amp; Conditions</a>, and <a routerLink="/privacy">Privacy Policy</a>.</p>
         <div class="text-center">Don't have an account? <a routerLink="/signup">SignUp here</a>.</div>

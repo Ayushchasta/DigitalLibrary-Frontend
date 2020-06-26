@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -25,8 +25,21 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { PageNotFoundScreenComponent } from './components/page-not-found-screen/page-not-found-screen.component';
 
 @NgModule({
-    imports: [BrowserModule, BrowserAnimationsModule, HttpClientModule, AppRoutingModule, NgbModule, NgxSpinnerModule, FormsModule, NgxPaginationModule],
-    declarations: [AppComponent, NavbarComponentComponent, HomeScreenComponent, AboutusScreenComponent, FooterComponentComponent, BookListScreenComponent, UserListScreenComponent, BookListPublisherScreenComponent, BookListUserScreenComponent, LoginScreenComponent, SignUpScreenComponent, PageNotFoundScreenComponent],
+    imports: [BrowserModule, ReactiveFormsModule, BrowserAnimationsModule, HttpClientModule, AppRoutingModule, NgbModule, NgxSpinnerModule, FormsModule, NgxPaginationModule],
+    declarations: [
+        AppComponent,
+        NavbarComponentComponent,
+        HomeScreenComponent,
+        AboutusScreenComponent,
+        FooterComponentComponent,
+        BookListScreenComponent,
+        UserListScreenComponent,
+        BookListPublisherScreenComponent,
+        BookListUserScreenComponent,
+        LoginScreenComponent,
+        SignUpScreenComponent,
+        PageNotFoundScreenComponent,
+    ],
     providers: [{ provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }],
     bootstrap: [AppComponent],
 })

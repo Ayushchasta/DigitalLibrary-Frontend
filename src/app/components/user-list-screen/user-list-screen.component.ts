@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { UserService } from 'src/app/services/user-service/user.service';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DomSanitizer } from '@angular/platform-browser';
+import { AuthenticationService } from 'src/app/services/authentication-service/authentication.service';
+import { User } from 'src/app/modals/user';
 
 @Component({
     selector: 'app-user-list-screen',
@@ -21,9 +24,19 @@ export class UserListScreenComponent implements OnInit {
         status: '',
     };
 
+    userToView: any;
+    user: User = null;
+    getimgURL() {
+        let fn = this.userToView.fileName.replace('Uploads/', '');
+        return this.sanitizer.bypassSecurityTrustResourceUrl(`http://localhost:8000/ViewImg/${fn}?user_id=${this.user.id}&user_token=${this.user.token}`);
+    }
+
+    openXl(content) {
+        this.modalService.open(content, { size: 'xl' });
+    }
+
     functionOnSubmit() {
         this.spinner.show();
-        console.log('functionOnSubmit', this.newUser);
         this.userService.createNewUser(this.newUser).subscribe(
             (data) => {
                 this.newUser = {
@@ -36,13 +49,14 @@ export class UserListScreenComponent implements OnInit {
                 this.fetchUsers();
             },
             (error) => {
-                console.log('Error: ', error);
                 this.spinner.hide();
             }
         );
     }
 
-    constructor(config: NgbModalConfig, private modalService: NgbModal, private spinner: NgxSpinnerService, private userService: UserService) {}
+    constructor(private sanitizer: DomSanitizer, config: NgbModalConfig, private modalService: NgbModal, private spinner: NgxSpinnerService, private userService: UserService, private authenticationService: AuthenticationService) {
+        this.authenticationService.currentUser.subscribe((x) => (this.user = x));
+    }
 
     open(content) {
         this.modalService.open(content);
@@ -63,7 +77,6 @@ export class UserListScreenComponent implements OnInit {
                 this.fetchUsers();
             },
             (error) => {
-                console.log('Error: ', error);
                 this.spinner.hide();
             }
         );
@@ -76,7 +89,6 @@ export class UserListScreenComponent implements OnInit {
                 this.fetchUsers();
             },
             (error) => {
-                console.log('Error: ', error);
                 this.spinner.hide();
             }
         );
@@ -87,12 +99,10 @@ export class UserListScreenComponent implements OnInit {
         this.userService.getUserList().subscribe(
             (data) => {
                 this.userList = data;
-                console.log(this.userList);
                 this.totalRecords = this.userList.length;
                 this.spinner.hide();
             },
             (error) => {
-                console.log('Error: ', error);
                 this.spinner.hide();
             }
         );

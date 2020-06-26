@@ -1,3 +1,18 @@
+<ng-template #viewimg let-c="close" let-d="dismiss">
+    <div class="modal-header text-white bg-dark">
+        <h4 class="modal-title" id="modal-basic-title">Hey, Got Publisher's Id Proof!</h4>
+        <button type="button" class="close text-white" style="outline: none;" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body" style="padding: 30px;">
+        <img [src]="getimgURL()" width="100%" height="500px" />
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="c('Save click')">Close</button>
+    </div>
+</ng-template>
+
 <ng-template #content let-c="close" let-d="dismiss">
     <div class="modal-header text-white bg-dark">
         <h4 class="modal-title" id="modal-basic-title">Hey, Got new user!</h4>
@@ -61,6 +76,9 @@
                         <td>{{ user.password }}</td>
                         <td>{{ user.status }}</td>
                         <td>
+                            <button *ngIf="user.role == 'PUBLISHER'" class="btn btn-sm btn-info m-1" (click)="userToView = user; openXl(viewimg)">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                            </button>
                             <button class="btn btn-sm btn-success m-1" (click)="clickOnUpdateStatus(user.id, 'ACTIVE')">
                                 <i class="fa fa-check" aria-hidden="true"></i>
                             </button>

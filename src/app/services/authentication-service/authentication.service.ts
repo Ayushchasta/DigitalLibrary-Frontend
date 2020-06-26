@@ -26,23 +26,15 @@ export class AuthenticationService {
     login(mobileNo: string, password: string) {
         return this.http.post<any>(`${this.baseurl}/Authentication/Authenticate?mobileNo=${mobileNo}&password=${password}`, '').pipe(
             map((data) => {
-                console.log('Laravel Responded');
-
                 if (data == null) {
-                    console.log('Laravel Responded with null data');
-
                     var message = 'Somthing is wrong, Try again later';
                     throw new Error(message);
                 }
 
-                console.log('Laravel Responded without null data');
                 if (data.length == 0) {
-                    console.log('Laravel Responded with data length 0');
                     alert('error:Id Password Invalid');
                     return null;
                 }
-                console.log('Laravel Responded with data length != 0');
-                console.log('Laravel Responded with data: ', data);
                 var user = data[0];
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('currentUser', JSON.stringify(user));
@@ -54,7 +46,7 @@ export class AuthenticationService {
 
     logout() {
         // remove user from local storage and set current user to null
-        alert('Logged Out');
+        // alert('Logged Out');
         localStorage.removeItem('currentUser');
         this.currentUserSubject.next(null);
     }
