@@ -40,6 +40,12 @@ export class LoginScreenComponent implements OnInit {
     constructor(private spinner: NgxSpinnerService, private authenticationService: AuthenticationService, private router: Router) {}
 
     ngOnInit(): void {
+        this.spinner.show();
+
+        setTimeout(() => {
+            /** spinner ends after 5 seconds */
+            this.spinner.hide();
+        }, 800);
         if (this.authenticationService.currentUserValue) {
             this.router.navigate(['/']);
         }

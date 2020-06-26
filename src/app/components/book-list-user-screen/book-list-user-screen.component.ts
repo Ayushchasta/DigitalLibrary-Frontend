@@ -14,6 +14,8 @@ import { User } from 'src/app/modals/user';
     styleUrls: ['./book-list-user-screen.component.css'],
 })
 export class BookListUserScreenComponent implements OnInit {
+    totalRecords: number;
+    page: number = 1;
     bookList: any = [];
     fileToUpload: File;
 
@@ -149,6 +151,7 @@ export class BookListUserScreenComponent implements OnInit {
             (data) => {
                 this.bookList = data;
                 console.log('fetchBooks()', this.bookList);
+                this.totalRecords = this.bookList.length;
                 this.spinner.hide();
             },
             (error) => {

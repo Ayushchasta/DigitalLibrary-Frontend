@@ -10,6 +10,8 @@ import { User } from 'src/app/modals/user';
 })
 export class HomeScreenComponent implements OnInit {
     user: User = null;
+    images = ['/assets/img/poster-1.jpg', '/assets/img/poster-2.jpg', '/assets/img/poster-1.jpg'];
+
     constructor(private spinner: NgxSpinnerService, private authenticationService: AuthenticationService) {
         this.authenticationService.currentUser.subscribe((x) => (this.user = x));
     }

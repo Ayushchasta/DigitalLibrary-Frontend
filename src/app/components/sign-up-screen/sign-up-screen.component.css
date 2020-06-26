@@ -1,26 +1,26 @@
-.signup-form .form-control {
+.box .form-control {
     border-width: 0 0 1px 0;
 }
-.signup-form .btn:hover,
-.signup-form .btn:focus {
+.box .btn:hover,
+.box .btn:focus {
     background: #179b81 !important;
 }
-.signup-form a {
+.box a {
     color: #19aa8d;
     text-decoration: none;
 }
-.signup-form a:hover {
+.box a:hover {
     text-decoration: underline;
 }
-.signup-form .fa {
+.box .fa {
     font-size: 21px;
     position: relative;
     top: 8px;
 }
-.signup-form .fa-paper-plane {
+.box .fa-paper-plane {
     font-size: 17px;
 }
-.signup-form .fa-check {
+.box .fa-check {
     color: #fff;
     left: 9px;
     top: 18px;

@@ -1,35 +1,22 @@
-<div class="col-md-4 col-12" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);">
-    <div class="card" style="border-radius: 10px; border: transparent;">
-        <h5 class="card-header text-white" style="border-radius: 10px; margin: 0; background-color: rgba(0, 0, 0, 0.7);">
-            Login Form
-        </h5>
-        <article class="card-body">
-            <a routerLink="/signup" class="float-right btn btn-outline-primary">Sign up</a>
-            <h4 class="card-title mb-4 mt-1">Sign in</h4>
-            <form>
-                <div class="form-group">
-                    <label>Your Mobile No.</label>
-                    <input [(ngModel)]="userLogin.mobile_no" name="mobileNo" class="form-control" placeholder="Mobile No." type="number" />
-                </div>
-                <!-- form-group// -->
-                <div class="form-group">
-                    <a class="float-right" href="#">Forgot?</a>
-                    <label>Your password</label>
-                    <input [(ngModel)]="userLogin.password" name="password" class="form-control" placeholder="******" type="password" />
-                </div>
-                <!-- form-group// -->
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label> <input type="checkbox" /> Save password </label>
-                    </div>
-                    <!-- checkbox .// -->
-                </div>
-                <!-- form-group// -->
-                <div class="form-group">
-                    <button type="submit" name="loginbutton" class="btn btn-primary btn-block" (click)="functionOnSubmit()">Login</button>
-                </div>
-                <!-- form-group// -->
-            </form>
-        </article>
-    </div>
+<div class="box row justify-content-center" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);">
+    <form class="form-container bg-white p-4 m-4">
+        <h2 class="text-dark text-center pb-3">Login Account</h2>
+        <div class="form-group color-Gainsboro">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
+                <input [(ngModel)]="userLogin.mobile_no" name="mobileNo" class="form-control" placeholder="Mobile No." type="number" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                <input [(ngModel)]="userLogin.password" name="password" class="form-control" placeholder="******" type="password" />
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="submit" name="loginbutton" class="btn btn-primary btn-block" (click)="functionOnSubmit()">Login</button>
+        </div>
+        <p class="small text-center">By clicking the Sign Up button, you agree to our <br /><a routerLink="/terms">Terms &amp; Conditions</a>, and <a routerLink="/privacy">Privacy Policy</a>.</p>
+        <div class="text-center">Don't have an account? <a routerLink="/signup">SignUp here</a>.</div>
+    </form>
 </div>

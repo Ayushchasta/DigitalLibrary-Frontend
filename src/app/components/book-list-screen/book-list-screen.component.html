@@ -23,7 +23,8 @@
                 <label>Book Pdf</label>
                 <div class="custom-file mb-3">
                     <input type="file" class="custom-file-input" (change)="onFileSelected($event)" id="bookFile" name="bookFile" accept=".pdf" />
-                    <label class="custom-file-label">Choose file</label>
+                    <label *ngIf="this.fileToUpload == null" class="custom-file-label">Choose file</label>
+                    <label *ngIf="this.fileToUpload != null" class="custom-file-label">{{ this.fileToUpload.name }}</label>
                 </div>
             </div>
         </form>
@@ -70,7 +71,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let book of bookList" class="text-center">
+                    <tr class="text-center" *ngFor="let book of bookList | paginate: { id: 'pagination_list', itemsPerPage: 2, currentPage: page, totalItems: totalRecords }">
                         <td>{{ book.id }}</td>
                         <td>
                             <span ngbTooltip="{{ book.uploaderId }}">{{ book.uploaderName }}</span>
@@ -112,6 +113,9 @@
                     </tr>
                 </tbody>
             </table>
+            <div>
+                <pagination-controls id="pagination_list" maxSixe="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+            </div>
         </div>
     </div>
 </div>

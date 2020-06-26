@@ -67,7 +67,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let book of bookList" class="text-center">
+                    <tr class="text-center" *ngFor="let book of bookList | paginate: { id: 'pagination_list', itemsPerPage: 2, currentPage: page, totalItems: totalRecords }">
                         <td>{{ book.id }}</td>
 
                         <td>{{ book.bookName }}</td>
@@ -88,6 +88,9 @@
                     </tr>
                 </tbody>
             </table>
+            <div>
+                <pagination-controls id="pagination_list" maxSixe="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+            </div>
         </div>
     </div>
 </div>

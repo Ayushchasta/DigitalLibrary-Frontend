@@ -21,10 +21,12 @@ import { BookListUserScreenComponent } from './components/book-list-user-screen/
 import { LoginScreenComponent } from './components/login-screen/login-screen.component';
 import { Interceptor } from './helpers/interceptor';
 import { SignUpScreenComponent } from './components/sign-up-screen/sign-up-screen.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { PageNotFoundScreenComponent } from './components/page-not-found-screen/page-not-found-screen.component';
 
 @NgModule({
-    imports: [BrowserModule, BrowserAnimationsModule, HttpClientModule, AppRoutingModule, NgbModule, NgxSpinnerModule, FormsModule],
-    declarations: [AppComponent, NavbarComponentComponent, HomeScreenComponent, AboutusScreenComponent, FooterComponentComponent, BookListScreenComponent, UserListScreenComponent, BookListPublisherScreenComponent, BookListUserScreenComponent, LoginScreenComponent, SignUpScreenComponent],
+    imports: [BrowserModule, BrowserAnimationsModule, HttpClientModule, AppRoutingModule, NgbModule, NgxSpinnerModule, FormsModule, NgxPaginationModule],
+    declarations: [AppComponent, NavbarComponentComponent, HomeScreenComponent, AboutusScreenComponent, FooterComponentComponent, BookListScreenComponent, UserListScreenComponent, BookListPublisherScreenComponent, BookListUserScreenComponent, LoginScreenComponent, SignUpScreenComponent, PageNotFoundScreenComponent],
     providers: [{ provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }],
     bootstrap: [AppComponent],
 })

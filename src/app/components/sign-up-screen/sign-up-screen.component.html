@@ -1,65 +1,38 @@
-<!--<div class="row justify-content-center">
-    <form class="form-container p-4 bg-white w-50 rounded shadow">
-        <p class="h4 mb-4 text text-dark text-center">Sign in</p>
-        <div class="form-group">
-            <label>Name</label>
-            <input [(ngModel)]="newUser.name" name="name" type="text" class="form-control" id="name" aria-describedby="nameHelp" placeholder="Enter Name" />
-        </div>
-        <div class="form-group">
-            <label>Role</label>
-            <!--<input [(ngModel)]="newUser.role" name="role" type="text" class="form-control" id="role" aria-describedby="roleHelp" placeholder="Enter Role" />-->
-<!-- <select class="form-control" [(ngModel)]="newUser.role" name="role">
-                <option disabled value="">Select Role</option>
-                <option value="READER">Reader</option>
-                <option value="PUBLISHER">Publisher</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label>Mobile No</label>
-            <input type="text" class="form-control" [(ngModel)]="newUser.mobile_no" name="mobile_no" id="mobile_no" placeholder="Enter Mobile No." />
-        </div>
-        <div class="form-group">
-            <label>password</label>
-            <input type="password" class="form-control" [(ngModel)]="newUser.password" name="password" id="password" placeholder="Enter Password" />
-        </div>
-        <button type="submit" class="btn btn-primary btn-block">Submit</button>
-    </form>
-</div>-->
-
-<div class="signup-form row justify-content-center">
+<div class="box row justify-content-center">
     <form class="form-container bg-white p-4 m-4">
         <h2 class="text-dark text-center pb-3">Create Account</h2>
         <div class="form-group color-Gainsboro">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                <input type="text" class="form-control" name="username" placeholder="Username" required="required" />
+                <input [(ngModel)]="newUser.name" name="name" type="text" class="form-control" id="name" aria-describedby="nameHelp" placeholder="Enter Name" required="required" />
             </div>
         </div>
         <div class="form-group">
             <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-paper-plane"></i></span>
-                <input type="email" class="form-control" name="email" placeholder="Email Address" required="required" />
+                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                <select class="form-control" [(ngModel)]="newUser.role" name="role">
+                    <option disabled value="">Select Role</option>
+                    <option value="READER">Reader</option>
+                    <option value="PUBLISHER">Publisher</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
+                <input type="text" class="form-control" [(ngModel)]="newUser.mobile_no" name="mobile_no" id="mobile_no" placeholder="Enter Mobile No." required="required" />
             </div>
         </div>
         <div class="form-group">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                <input type="text" class="form-control" name="password" placeholder="Password" required="required" />
+                <input type="password" class="form-control" [(ngModel)]="newUser.password" name="password" id="password" placeholder="Enter Password" required="required" />
             </div>
         </div>
         <div class="form-group">
-            <div class="input-group">
-                <span class="input-group-addon">
-                    <i class="fa fa-lock"></i>
-                    <i class="fa fa-check"></i>
-                </span>
-                <input type="text" class="form-control" name="confirm_password" placeholder="Confirm Password" required="required" />
-            </div>
+            <button type="button" class="btn btn-primary btn-block btn-lg" (click)="functionOnSubmit()">Sign Up</button>
         </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-block btn-lg">Sign Up</button>
-        </div>
-        <p class="small text-center">By clicking the Sign Up button, you agree to our <br /><a href="#">Terms &amp; Conditions</a>, and <a href="#">Privacy Policy</a>.</p>
+        <p class="small text-center">By clicking the Sign Up button, you agree to our <br /><a routerLink="/terms">Terms &amp; Conditions</a>, and <a routerLink="/privacy">Privacy Policy</a>.</p>
         <div class="text-center">Already have an account? <a routerLink="/login">Login here</a>.</div>
     </form>
 </div>

@@ -9,7 +9,7 @@
         <form>
             <div class="form-group">
                 <label>Name</label>
-                <input [(ngModel)]="newUser.name" name="name" type="text" class="form-control" id="name" aria-describedby="nameHelp" placeholder="Enter Name" />
+                <input [(ngModel)]="newUser.name" name="name" type="text" class="form-control" id="name" aria-describedby="nameHelp" placeholder="Enter Name" required="required" />
             </div>
             <div class="form-group">
                 <label>Role</label>
@@ -22,7 +22,6 @@
             </div>
             <div class="form-group">
                 <label>Mobile No</label>
-                <input type="text" class="form-control" [(ngModel)]="newUser.mobile_no" name="mobile_no" id="mobile_no" placeholder="Enter Mobile No." />
             </div>
             <div class="form-group">
                 <label>password</label>
@@ -54,7 +53,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let user of userList" class="text-center">
+                    <tr class="text-center" *ngFor="let user of userList | paginate: { id: 'pagination_list', itemsPerPage: 2, currentPage: page, totalItems: totalRecords }">
                         <td>{{ user.id }}</td>
                         <td>{{ user.name }}</td>
                         <td>{{ user.role }}</td>
@@ -83,16 +82,9 @@
                     </tr>
                 </tbody>
             </table>
+            <div>
+                <pagination-controls id="pagination_list" maxSixe="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+            </div>
         </div>
     </div>
-</div>
-
-<div class="d-flex justify-content-between p-2">
-    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"> </ngb-pagination>
-
-    <select class="custom-select" style="width: auto;" [(ngModel)]="pageSize">
-        <option [ngValue]="2">2 items per page</option>
-        <option [ngValue]="4">4 items per page</option>
-        <option [ngValue]="6">6 items per page</option>
-    </select>
 </div>

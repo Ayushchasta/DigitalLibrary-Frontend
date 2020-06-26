@@ -15,6 +15,8 @@ import { User } from 'src/app/modals/user';
 export class BookListScreenComponent implements OnInit {
     bookList: any = [];
     fileToUpload: File;
+    totalRecords: number;
+    page: number = 1;
 
     user: User = null;
     newBook = {
@@ -32,8 +34,10 @@ export class BookListScreenComponent implements OnInit {
     }
 
     onFileSelected(event) {
-        console.log('onFileSelected => ', event);
+        //console.log('onFileSelected => ', event);
         this.fileToUpload = <File>event.target.files[0];
+        console.log('fileToUpload => ', this.fileToUpload);
+        console.log('file Name => ', this.fileToUpload.name);
     }
 
     clickOnAdminStatus(bookId, adminStatus) {
@@ -150,6 +154,7 @@ export class BookListScreenComponent implements OnInit {
             (data) => {
                 this.bookList = data;
                 console.log('fetchBooks()', this.bookList);
+                this.totalRecords = this.bookList.length;
                 this.spinner.hide();
             },
             (error) => {

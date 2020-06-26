@@ -15,6 +15,8 @@ import { User } from 'src/app/modals/user';
 export class BookListPublisherScreenComponent implements OnInit {
     bookList: any = [];
     fileToUpload: File;
+    totalRecords: number;
+    page: number = 1;
 
     user: User = null;
     newBook = {
@@ -165,6 +167,7 @@ export class BookListPublisherScreenComponent implements OnInit {
             (data) => {
                 this.bookList = data;
                 console.log('fetchBooks()', this.bookList);
+                this.totalRecords = this.bookList.length;
                 this.spinner.hide();
             },
             (error) => {

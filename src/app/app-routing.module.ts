@@ -9,6 +9,7 @@ import { BookListUserScreenComponent } from './components/book-list-user-screen/
 import { LoginScreenComponent } from './components/login-screen/login-screen.component';
 import { AuthGuard } from './helpers/auth.guard';
 import { SignUpScreenComponent } from './components/sign-up-screen/sign-up-screen.component';
+import { PageNotFoundScreenComponent } from './components/page-not-found-screen/page-not-found-screen.component';
 
 const routes: Routes = [
     {
@@ -46,6 +47,10 @@ const routes: Routes = [
     {
         path: 'signup',
         component: SignUpScreenComponent,
+    },
+    {
+        path: '**',
+        component: PageNotFoundScreenComponent,
     },
 ];
 

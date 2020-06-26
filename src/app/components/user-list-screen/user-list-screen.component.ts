@@ -9,6 +9,8 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
     styleUrls: ['./user-list-screen.component.css'],
 })
 export class UserListScreenComponent implements OnInit {
+    totalRecords: number;
+    page: number = 1;
     userList: any = [];
 
     newUser = {
@@ -86,6 +88,7 @@ export class UserListScreenComponent implements OnInit {
             (data) => {
                 this.userList = data;
                 console.log(this.userList);
+                this.totalRecords = this.userList.length;
                 this.spinner.hide();
             },
             (error) => {

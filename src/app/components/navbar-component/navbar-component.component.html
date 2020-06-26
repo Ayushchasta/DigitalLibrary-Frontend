@@ -19,11 +19,11 @@
             </li>
 
             <li *ngIf="user != null && (user.role === 'ADMIN' || user.role === 'PUBLISHER')" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                <a class="nav-link" routerLink="/publisherbooks">Publisher Books</a>
+                <a class="nav-link" routerLink="/publisherbooks">My Uploaded</a>
             </li>
 
             <li *ngIf="user != null" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                <a class="nav-link" routerLink="/userbooks">User Books</a>
+                <a class="nav-link" routerLink="/userbooks"> library Books</a>
             </li>
 
             <li *ngIf="user != null && user.role === 'ADMIN'" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
