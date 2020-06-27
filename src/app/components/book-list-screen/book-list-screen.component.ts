@@ -6,6 +6,7 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AuthenticationService } from 'src/app/services/authentication-service/authentication.service';
 import { User } from 'src/app/modals/user';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
     selector: 'app-book-list-screen',
@@ -17,15 +18,9 @@ export class BookListScreenComponent implements OnInit {
     fileToUpload: File;
     totalRecords: number;
     page: number = 1;
+    addBookForm: FormGroup;
 
     user: User = null;
-    newBook = {
-        bookName: '',
-        bookAuthor: '',
-        bookPublisher: '',
-        adminApproval: '',
-        publisherApproval: '',
-    };
     bookToView: any;
 
     getBookURL() {
@@ -53,29 +48,39 @@ export class BookListScreenComponent implements OnInit {
         );
     }
 
+    submitted = false;
     functionOnSubmit() {
+        this.submitted = true;
+
+        // stop here if form is invalid
+        if (this.addBookForm.invalid) {
+            return;
+        }
+
         this.spinner.show();
         const formData = new FormData();
-        formData.append('bookName', this.newBook.bookName);
-        formData.append('bookPublisher', this.newBook.bookPublisher);
-        formData.append('bookAuthor', this.newBook.bookAuthor);
+        formData.append('bookName', this.f.bookName.value);
+        formData.append('bookPublisher', this.f.bookPublisher.value);
+        formData.append('bookAuthor', this.f.bookAuthor.value);
         formData.append('file', this.fileToUpload);
         this.bookService.createNewBook(formData).subscribe(
             (data) => {
-                this.newBook = {
-                    bookName: '',
-                    bookAuthor: '',
-                    bookPublisher: '',
-                    adminApproval: '',
-                    publisherApproval: '',
-                };
                 this.fetchBooks();
+                this.ngOnInit();
+                this.spinner.hide();
+                this.submitted = false;
             },
-            (error) => {}
+            (error) => {
+                this.spinner.hide();
+            }
         );
     }
 
-    functionOnSubmitOld() {
+    get f() {
+        return this.addBookForm.controls;
+    }
+
+    /* functionOnSubmitOld() {
         this.spinner.show();
         this.bookService.createNewBook(this.newBook).subscribe(
             (data) => {
@@ -93,8 +98,8 @@ export class BookListScreenComponent implements OnInit {
             }
         );
     }
-
-    constructor(private sanitizer: DomSanitizer, config: NgbModalConfig, private modalService: NgbModal, private spinner: NgxSpinnerService, private bookService: BookService, private authenticationService: AuthenticationService) {
+*/
+    constructor(private formBuilder: FormBuilder, private sanitizer: DomSanitizer, config: NgbModalConfig, private modalService: NgbModal, private spinner: NgxSpinnerService, private bookService: BookService, private authenticationService: AuthenticationService) {
         config.backdrop = 'static';
         config.keyboard = false;
         this.authenticationService.currentUser.subscribe((x) => (this.user = x));
@@ -152,5 +157,11 @@ export class BookListScreenComponent implements OnInit {
 
     ngOnInit(): void {
         this.fetchBooks();
+
+        this.addBookForm = this.formBuilder.group({
+            bookName: ['', Validators.required],
+            bookAuthor: ['', Validators.required],
+            bookPublisher: ['', Validators.required],
+        });
     }
 }

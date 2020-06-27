@@ -27,6 +27,10 @@ export class BookListUserScreenComponent implements OnInit {
         adminApproval: '',
         publisherApproval: '',
     };
+
+    searchBook = {
+        searchBookName: '',
+    };
     bookToView: any;
 
     getBookURL() {
@@ -49,6 +53,22 @@ export class BookListUserScreenComponent implements OnInit {
                 this.fetchBooks();
             },
             (error) => {
+                this.spinner.hide();
+            }
+        );
+    }
+    functionOnSearch() {
+        this.spinner.show();
+        console.log('In functionOnSearcht');
+        console.log('functionOnSearcht', this.searchBook);
+        this.bookService.searchBook(this.searchBook.searchBookName).subscribe(
+            (data) => {
+                this.bookList = data;
+
+                this.spinner.hide();
+            },
+            (error) => {
+                console.log('Error: ', error);
                 this.spinner.hide();
             }
         );

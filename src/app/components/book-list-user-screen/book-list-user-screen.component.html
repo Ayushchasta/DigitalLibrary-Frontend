@@ -54,6 +54,10 @@
     </h5>
     <div class="card-body">
         <div class="shadow-lg p-3 mb-5 bg-white rounded">
+            <form>
+                <input type="text" [(ngModel)]="searchBook.searchBookName" name="searchBookName" />
+                <button class="button" (click)="functionOnSearch()">Search</button>
+            </form>
             <table class="table table-sm table-bordered table-striped">
                 <thead class="thead-dark">
                     <tr class="text-center">
@@ -88,6 +92,7 @@
                     </tr>
                 </tbody>
             </table>
+
             <div>
                 <pagination-controls id="pagination_list" maxSixe="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
             </div>

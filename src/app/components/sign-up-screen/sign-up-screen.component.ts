@@ -52,7 +52,7 @@ export class SignUpScreenComponent implements OnInit {
         formData.append('file', this.fileToUpload);
         this.userService.createNewUser(formData).subscribe(
             (data) => {
-                this.signupForm.reset();
+                this.ngOnInit();
                 this.spinner.hide();
                 this.submitted = false;
             },

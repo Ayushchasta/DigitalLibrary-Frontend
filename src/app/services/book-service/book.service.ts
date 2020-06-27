@@ -42,6 +42,9 @@ export class BookService {
     downloadBook(docId: string) {
         return this.httpClient.get(`${this.baseurl}/Download/${docId.replace('Uploads/', '')}`, { responseType: 'text' }).pipe(retry(1), catchError(this.handleError));
     }
+    searchBook(searchString) {
+        return this.httpClient.get(`${this.baseurl}/SearchBook?searchString=${searchString}`).pipe(retry(1), catchError(this.handleError));
+    }
     createNewBook(formData) {
         return this.httpClient.post(`${this.baseurl}/Book`, formData, { responseType: 'text' }).pipe(retry(0), catchError(this.handleError));
     }

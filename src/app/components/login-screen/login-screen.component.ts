@@ -34,6 +34,7 @@ export class LoginScreenComponent implements OnInit {
                 } else {
                     this.loginForm.reset();
                     this.spinner.hide();
+
                     if (this.authenticationService.currentUserValue) {
                         this.router.navigate(['/']);
                     }
