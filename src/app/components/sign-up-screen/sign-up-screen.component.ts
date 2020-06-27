@@ -22,7 +22,7 @@ export class SignUpScreenComponent implements OnInit {
             name: ['', Validators.required],
             role: ['', Validators.required],
             password: ['', [Validators.required, Validators.minLength(5)]],
-            mobileNo: ['', [Validators.required, Validators.min(88888888)]],
+            mobileNo: ['', [Validators.required, Validators.min(999999999)]],
         });
 
         setTimeout(() => {

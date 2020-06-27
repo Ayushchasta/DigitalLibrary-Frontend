@@ -59,8 +59,6 @@ export class BookListUserScreenComponent implements OnInit {
     }
     functionOnSearch() {
         this.spinner.show();
-        console.log('In functionOnSearcht');
-        console.log('functionOnSearcht', this.searchBook);
         this.bookService.searchBook(this.searchBook.searchBookName).subscribe(
             (data) => {
                 this.bookList = data;
@@ -68,7 +66,6 @@ export class BookListUserScreenComponent implements OnInit {
                 this.spinner.hide();
             },
             (error) => {
-                console.log('Error: ', error);
                 this.spinner.hide();
             }
         );

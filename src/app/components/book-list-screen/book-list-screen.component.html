@@ -34,7 +34,7 @@
             <div class="form-group">
                 <label>Book Pdf</label>
                 <div class="custom-file mb-3">
-                    <input type="file" class="custom-file-input" (change)="onFileSelected($event)" id="bookFile" name="bookFile" accept=".pdf" />
+                    <input type="file" class="custom-file-input" (change)="onFileSelected($event)" id="bookFile" formControlName="bookFile" accept=".pdf" />
                     <label *ngIf="this.fileToUpload == null" class="custom-file-label">Choose file</label>
                     <label *ngIf="this.fileToUpload != null" class="custom-file-label">{{ this.fileToUpload.name }}</label>
                 </div>
@@ -79,6 +79,7 @@
                         <th scope="col">Publisher Approval</th>
                         <th scope="col">Views</th>
                         <th scope="col">Downloads</th>
+                        <th scope="col">Time</th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
@@ -95,6 +96,7 @@
                         <td>{{ book.publisherApproval == 1 ? 'APPROVED' : 'PENDING' }}</td>
                         <td>{{ book.countView }}</td>
                         <td>{{ book.countDownload }}</td>
+                        <td>{{ book.time }}</td>
                         <td>
                             <button class="btn btn-sm btn-success m-1" (click)="clickOnAdminStatus(book.id, 1)">
                                 <i class="fa fa-check" aria-hidden="true"></i>
@@ -116,7 +118,7 @@
                         </td>
                     </tr>
                     <tr class="text-center">
-                        <td colspan="9"></td>
+                        <td colspan="10"></td>
                         <td>
                             <button class="btn btn-sm btn-info m-1" (click)="open(content)">
                                 Add New

@@ -43,7 +43,7 @@ export class LoginScreenComponent implements OnInit {
             },
             (error) => {
                 this.spinner.hide();
-                alert('Id or Password Invalid');
+                alert('Either Id Password is not correct Or the user is not Active yet ');
             }
         );
     }

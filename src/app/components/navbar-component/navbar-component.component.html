@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: black;">
-    <a class="navbar-brand" routerLink="/">Digital Library</a>
+<nav class="navbar navbar-expand-lg navbar-light fixed-top shadow p-3 mb-5 rounded" style="background-color: white;">
+    <a class="navbar-brand" routerLink="/"><b>Digital Library</b></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -7,42 +7,42 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                <a class="nav-link" routerLink="/">Home</a>
+                <a class="nav-link" routerLink="/"><b>Home</b></a>
             </li>
 
             <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                <a class="nav-link" routerLink="/about">About Us</a>
+                <a class="nav-link" routerLink="/about"><b>About Us</b></a>
             </li>
 
             <li *ngIf="user != null && user.role === 'ADMIN'" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                <a class="nav-link" routerLink="/books">Books</a>
+                <a class="nav-link" routerLink="/books"><b>Books</b></a>
             </li>
 
             <li *ngIf="user != null && (user.role === 'ADMIN' || user.role === 'PUBLISHER')" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                <a class="nav-link" routerLink="/publisherbooks">My Uploaded</a>
+                <a class="nav-link" routerLink="/publisherbooks"><b>My Uploaded</b></a>
             </li>
 
             <li *ngIf="user != null" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                <a class="nav-link" routerLink="/userbooks"> library Books</a>
+                <a class="nav-link" routerLink="/userbooks"> <b>library Books</b> </a>
             </li>
 
             <li *ngIf="user != null && user.role === 'ADMIN'" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                <a class="nav-link" routerLink="/users">Users</a>
+                <a class="nav-link" routerLink="/users"><b>Users</b></a>
             </li>
 
             <li *ngIf="user == null" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                <a class="nav-link" routerLink="/login">Login</a>
+                <a class="nav-link" routerLink="/login"><b>Login</b></a>
             </li>
 
             <li *ngIf="user != null" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                <a class="nav-link" (click)="functionOnLogout()">Logout</a>
+                <a class="nav-link" (click)="functionOnLogout()"><b>Logout</b></a>
             </li>
         </ul>
 
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit" placement="bottom" ngbTooltip="Tap To Search">
-                Search
+                <b>Search</b>
             </button>
         </form>
     </div>

@@ -162,6 +162,7 @@ export class BookListScreenComponent implements OnInit {
             bookName: ['', Validators.required],
             bookAuthor: ['', Validators.required],
             bookPublisher: ['', Validators.required],
+            bookile: [''],
         });
     }
 }

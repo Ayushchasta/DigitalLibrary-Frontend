@@ -19,6 +19,7 @@ export class UserListScreenComponent implements OnInit {
     signupForm: FormGroup;
     userToView: any;
     user: User = null;
+    fileToUpload: File;
 
     getimgURL() {
         let fn = this.userToView.fileName.replace('Uploads/', '');
@@ -27,6 +28,10 @@ export class UserListScreenComponent implements OnInit {
 
     openXl(content) {
         this.modalService.open(content, { size: 'xl' });
+    }
+
+    onFileSelected(event) {
+        this.fileToUpload = <File>event.target.files[0];
     }
 
     submitted = false;
@@ -38,14 +43,13 @@ export class UserListScreenComponent implements OnInit {
             return;
         }
 
-        console.log('Submit called');
         this.spinner.show();
         const formData = new FormData();
         formData.append('name', this.f.name.value);
         formData.append('role', this.f.role.value);
         formData.append('mobileNo', this.f.mobileNo.value);
         formData.append('password', this.f.password.value);
-        console.log(formData);
+        formData.append('file', this.fileToUpload);
         this.userService.createNewUser(formData).subscribe(
             (data) => {
                 this.fetchUsers();

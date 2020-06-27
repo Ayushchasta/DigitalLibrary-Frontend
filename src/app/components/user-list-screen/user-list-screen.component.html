@@ -43,6 +43,14 @@
                     <div *ngIf="f.role.errors.required">Role is required</div>
                 </div>
             </div>
+            <div class="form-group" *ngIf="this.f.role.value === 'PUBLISHER'">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
+                    <input type="file" (change)="onFileSelected($event)" class="custom-file-input" accept=".jpg" placeholder="Choose File" />
+                    <label *ngIf="this.fileToUpload == null" class="custom-file-label">Choose file</label>
+                    <label *ngIf="this.fileToUpload != null" class="custom-file-label">{{ this.fileToUpload.name }}</label>
+                </div>
+            </div>
             <div class="form-group">
                 <label>Mobile No</label>
                 <input [ngClass]="{ 'is-invalid': submitted && f.mobileNo.errors }" type="number" class="form-control" formControlName="mobileNo" placeholder="Enter Mobile No." />
@@ -83,6 +91,7 @@
                         <th scope="col">Mobile No.</th>
                         <th scope="col">Password</th>
                         <th scope="col">Status</th>
+                        <th scope="col">Time</th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
@@ -94,6 +103,7 @@
                         <td>{{ user.mobile_no }}</td>
                         <td>{{ user.password }}</td>
                         <td>{{ user.status }}</td>
+                        <td>{{ user.time }}</td>
                         <td>
                             <button *ngIf="user.role == 'PUBLISHER'" class="btn btn-sm btn-info m-1" (click)="userToView = user; openXl(viewimg)">
                                 <i class="fa fa-eye" aria-hidden="true"></i>
@@ -110,7 +120,7 @@
                         </td>
                     </tr>
                     <tr class="text-center">
-                        <td colspan="6"></td>
+                        <td colspan="7"></td>
                         <td>
                             <button class="btn btn-sm btn-info m-1" (click)="open(content)">
                                 Add New
