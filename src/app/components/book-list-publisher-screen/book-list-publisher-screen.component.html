@@ -61,73 +61,82 @@
     </div>
 </ng-template>
 
-<div class="card" style="border-radius: 10px; border: transparent;">
-    <h5 class="card-header text-white" style="border-radius: 10px; margin: 0; background-color: rgba(0, 0, 0, 0.7);">
-        Books in Library
-    </h5>
-    <div class="card-body">
-        <div class="shadow-lg p-3 mb-5 bg-white rounded">
-            <table class="table table-sm table-bordered table-striped">
-                <thead class="thead-dark">
-                    <tr class="text-center">
-                        <th scope="col">ID</th>
-                        <th scope="col">Uploader</th>
-                        <th scope="col">Book Name</th>
-                        <th scope="col">Author</th>
-                        <th scope="col">Publisher</th>
-                        <th scope="col">Admin Approval</th>
-                        <th scope="col">Publisher Approval</th>
-                        <th scope="col">Views</th>
-                        <th scope="col">Downloads</th>
-                        <th scope="col">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="text-center" *ngFor="let book of bookList | paginate: { id: 'pagination_list', itemsPerPage: 2, currentPage: page, totalItems: totalRecords }">
-                        <td>{{ book.id }}</td>
-                        <td>
-                            <span ngbTooltip="{{ book.uploaderId }}">{{ book.uploaderId }}</span>
-                        </td>
-                        <td>{{ book.bookName }}</td>
-                        <td>{{ book.author }}</td>
-                        <td>{{ book.publisher }}</td>
-                        <td>{{ book.adminApproval == 1 ? 'APPROVED' : 'PENDING' }}</td>
-                        <td>{{ book.publisherApproval == 1 ? 'APPROVED' : 'PENDING' }}</td>
-                        <td>{{ book.countView }}</td>
-                        <td>{{ book.countDownload }}</td>
-                        <td>
-                            <button class="btn btn-sm btn-success m-1" (click)="clickOnPublisherStatus(book.id, 1)">
-                                <i class="fa fa-check" aria-hidden="true"></i>
-                            </button>
-                            <button class="btn btn-sm btn-danger m-1" (click)="clickOnPublisherStatus(book.id, 0)">
-                                <i class="fa fa-times" aria-hidden="true"></i>
-                            </button>
-                            <button class="btn btn-sm btn-info m-1" (click)="bookToView = book; openXl(viewpdfcontent)">
-                                <i class="fa fa-eye" aria-hidden="true"></i>
-                            </button>
-                            <a href="http://localhost:8000/Download/{{ book.fileName.replace('Uploads/', '') }}?bookName={{ book.bookName }}&user_id={{ user.id }}&user_token={{ user.token }}" download>
-                                <button class="btn btn-sm btn-success m-1">
-                                    <i class="fa fa-download" aria-hidden="true"></i>
-                                </button>
-                            </a>
-                            <button class="btn btn-sm btn-danger m-1" (click)="clickOnDelete(book.id)">
-                                <i class="fa fa-trash"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr class="text-center">
-                        <td colspan="9"></td>
-                        <td>
-                            <button class="btn btn-sm btn-info m-1" (click)="open(content)">
-                                Add New
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div>
-                <pagination-controls id="pagination_list" maxSixe="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
-            </div>
-        </div>
+<div style="background-color: white;">
+    <div style="height: 50px; float: right; margin-top: 4px;">
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" />
+            <button class="btn btn-outline-danger my-2 my-sm-0" type="submit" placement="bottom"><b>Search</b></button>
+        </form>
     </div>
+    <table class="table">
+        <thead style="border-bottom: black; border-top: white;">
+            <tr class="text-center">
+                <th scope="col">ID</th>
+                <th scope="col">Uploader</th>
+                <th scope="col">Book Name</th>
+                <th scope="col">Author</th>
+                <th scope="col">Publisher</th>
+                <th scope="col">Admin Approval</th>
+                <th scope="col">Publisher Approval</th>
+                <th scope="col">Views</th>
+                <th scope="col">Downloads</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody class="table-striped">
+            <tr class="text-center" *ngFor="let book of bookList | paginate: { id: 'pagination_list', itemsPerPage: 7, currentPage: page, totalItems: totalRecords }">
+                <td>{{ book.id }}</td>
+                <td>
+                    <span ngbTooltip="{{ book.uploaderId }}">{{ book.uploaderId }}</span>
+                </td>
+                <td>{{ book.bookName }}</td>
+                <td>{{ book.author }}</td>
+                <td>{{ book.publisher }}</td>
+                <td>{{ book.adminApproval == 1 ? 'APPROVED' : 'PENDING' }}</td>
+                <td>{{ book.publisherApproval == 1 ? 'APPROVED' : 'PENDING' }}</td>
+                <td>{{ book.countView }}</td>
+                <td>{{ book.countDownload }}</td>
+                <td>
+                    <button class="btn btn-sm m-1" (click)="clickOnPublisherStatus(book.id, 1)" style="color: green;">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </button>
+                    <button class="btn btn-sm m-1" (click)="clickOnPublisherStatus(book.id, 0)" style="color: red;">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </button>
+                    <button class="btn btn-sm m-1" (click)="bookToView = book; openXl(viewpdfcontent)" style="color: skyblue;">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                    </button>
+                    <a href="http://localhost:8000/Download/{{ book.fileName.replace('Uploads/', '') }}?bookName={{ book.bookName }}&user_id={{ user.id }}&user_token={{ user.token }}" download>
+                        <button class="btn btn-sm m-1">
+                            <i class="fa fa-download" aria-hidden="true" style="color: greenyellow;"></i>
+                        </button>
+                    </a>
+                    <button class="btn btn-sm m-1" (click)="clickOnDelete(book.id)" style="color: red;">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </td>
+            </tr>
+            <tr class="text-center">
+                <td colspan="9"></td>
+                <td>
+                    <button class="btn btn-sm btn-info m-1" (click)="open(content)">
+                        Add New
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div>
+    <pagination-controls id="pagination_list" maxSixe="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+</div>
+<div class="card">
+    <tr>
+        <td>xcvxc</td>
+        <td>xcvxc</td>
+        <td>xcvxc</td>
+        <td>xcvxc</td>
+        <td>xcvxc</td>
+        <td>xcvxc</td>
+    </tr>
 </div>

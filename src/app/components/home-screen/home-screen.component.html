@@ -1,33 +1,8 @@
-<div style="text-align: center;">
-    <ngb-carousel *ngIf="images">
-        <ng-template ngbSlide>
-            <div class="picsum-img-wrapper">
-                <img [src]="images[0]" alt="Random first slide" />
-            </div>
-            <div class="carousel-caption">
-                <h3>First slide label</h3>
-            </div>
-        </ng-template>
-        <ng-template ngbSlide>
-            <div class="picsum-img-wrapper">
-                <img [src]="images[1]" alt="Random second slide" />
-            </div>
-            <div class="carousel-caption">
-                <h3>Second slide label</h3>
-            </div>
-        </ng-template>
-        <ng-template ngbSlide>
-            <div class="picsum-img-wrapper">
-                <img [src]="images[2]" alt="Random third slide" />
-            </div>
-            <div class="carousel-caption">
-                <h3>Third slide label</h3>
-            </div>
-        </ng-template>
-    </ngb-carousel>
+<div class="row-full align-items-center" style="height: 550px; background-image: url('./assets/img/bg-7.jpg'); background-repeat: no-repeat; background-attachment: fixed; background-position: center; background-size: cover;">
+    <button>GET STARTED</button>
 </div>
-<!--<p>I am Digital Library</p>-->
-<h1>Digital Library</h1>
-<h1 *ngIf="user != null">{{ user.name }}</h1>
-
-<h1 *ngIf="user == null">Guest</h1>
+<div>
+    <h1 class="text-dark">Digital Library</h1>
+    <h1 class="text-dark" *ngIf="user != null">{{ user.name }}</h1>
+    <h1 class="text-dark" *ngIf="user == null">Guest</h1>
+</div>
