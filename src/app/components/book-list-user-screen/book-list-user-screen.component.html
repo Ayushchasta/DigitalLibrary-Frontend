@@ -48,53 +48,47 @@
     </div>
 </ng-template>
 
-<div class="card" style="border-radius: 10px; border: transparent;">
-    <h5 class="card-header text-white" style="border-radius: 10px; margin: 0; background-color: rgba(0, 0, 0, 0.7);">
-        Books in Library
-    </h5>
-    <div class="card-body">
-        <div class="shadow-lg p-3 mb-5 bg-white rounded">
-            <form>
-                <input type="text" [(ngModel)]="searchBook.searchBookName" name="searchBookName" />
-                <button class="button" (click)="functionOnSearch()">Search</button>
-            </form>
-            <table class="table table-sm table-bordered table-striped">
-                <thead class="thead-dark">
-                    <tr class="text-center">
-                        <th scope="col">ID</th>
-                        <th scope="col">Book Name</th>
-                        <th scope="col">Author</th>
-                        <th scope="col">Publisher</th>
-                        <th scope="col">Views</th>
-                        <th scope="col">Downloads</th>
-                        <th scope="col">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="text-center" *ngFor="let book of bookList | paginate: { id: 'pagination_list', itemsPerPage: 2, currentPage: page, totalItems: totalRecords }">
-                        <td>{{ book.id }}</td>
+<form class="form-inline">
+    <div class="form-group mx-sm-3 mb-2 mt-2">
+        <input type="text" class="form-control" [(ngModel)]="searchBook.searchBookName" name="searchBookName" placeholder="Search Book Name" />
+    </div>
+    <button class="btn btn-primary mb-2 mt-2" (click)="functionOnSearch()">Search</button>
+</form>
 
-                        <td>{{ book.bookName }}</td>
-                        <td>{{ book.author }}</td>
-                        <td>{{ book.publisher }}</td>
-                        <td>{{ book.countView }}</td>
-                        <td>{{ book.countDownload }}</td>
-                        <td>
-                            <button class="btn btn-sm btn-info m-1" (click)="bookToView = book; openXl(viewpdfcontent)">
-                                <i class="fa fa-eye" aria-hidden="true"></i>
-                            </button>
-                            <a href="http://localhost:8000/Download/{{ book.fileName.replace('Uploads/', '') }}?bookName={{ book.bookName }}&user_id={{ user.id }}&user_token={{ user.token }}" download>
-                                <button class="btn btn-sm btn-success m-1">
-                                    <i class="fa fa-download" aria-hidden="true"></i>
-                                </button>
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+<div class="row">
+    <div class="col-md-3 h-100" *ngFor="let book of bookList | paginate: { id: 'pagination_list', itemsPerPage: 12, currentPage: page, totalItems: totalRecords }">
+        <div class="card shadow-lg p-3 mb-5 bg-white rounded h-100">
+            <div class="card-body h-100 rounded">
+                <h4 class="card-title" class="d-inline-block text-truncate" style="max-width: 150px;" ngbTooltip="{{ book.bookName }}">{{ book.bookName }}</h4>
+                <p class="card-text">
+                    <b>Book Id: </b> {{ book.id }}<br />
+                    <b>Author: </b>{{ book.author }}<br />
+                    <b>Publisher: </b> {{ book.publisher }}<br />
+                    <b>Views: </b> {{ book.countView }}<br />
+                    <b>Downloads: </b> {{ book.countDownload }}<br />
+                </p>
+                <div>
+                    <button class="btn btn-lg m-1" (click)="bookToView = book; openXl(viewpdfcontent)" style="color: skyblue;">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                    </button>
+                    <a href="http://localhost:8000/Download/{{ book.fileName.replace('Uploads/', '') }}?bookName={{ book.bookName }}&user_id={{ user.id }}&user_token={{ user.token }}" download>
+                        <button class="btn btn-lg m-1" style="color: greenyellow;">
+                            <i class="fa fa-download" aria-hidden="true"></i>
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-            <div>
-                <pagination-controls id="pagination_list" maxSixe="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+<div class="row">
+    <div class="col-md-12 h-100">
+        <div class="card shadow-lg mb-5 bg-white rounded h-100">
+            <div class="card-body h-100 rounded">
+                <div class="pagination">
+                    <pagination-controls id="pagination_list" maxSixe="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+                </div>
             </div>
         </div>
     </div>

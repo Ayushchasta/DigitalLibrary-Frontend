@@ -23,9 +23,13 @@ import { Interceptor } from './helpers/interceptor';
 import { SignUpScreenComponent } from './components/sign-up-screen/sign-up-screen.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { PageNotFoundScreenComponent } from './components/page-not-found-screen/page-not-found-screen.component';
+import { MatCardModule } from '@angular/material/card';
+
+import { MatTableModule } from '@angular/material/table';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
-    imports: [BrowserModule, ReactiveFormsModule, BrowserAnimationsModule, HttpClientModule, AppRoutingModule, NgbModule, NgxSpinnerModule, FormsModule, NgxPaginationModule],
+    imports: [MatGridListModule, MatTableModule, MatCardModule, BrowserModule, ReactiveFormsModule, BrowserAnimationsModule, HttpClientModule, AppRoutingModule, NgbModule, NgxSpinnerModule, FormsModule, NgxPaginationModule],
     declarations: [
         AppComponent,
         NavbarComponentComponent,

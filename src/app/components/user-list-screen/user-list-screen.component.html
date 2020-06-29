@@ -76,61 +76,61 @@
     </div>
 </ng-template>
 
-<div class="card" style="border-radius: 10px; border: transparent;">
-    <h5 class="card-header text-white" style="border-radius: 10px; margin: 0; background-color: black;">
-        Users On Digital Library
-    </h5>
-    <div class="card-body">
-        <div class="shadow-lg p-3 mb-5 bg-white rounded">
-            <table class="table table-sm table-bordered table-striped">
-                <thead class="thead-dark">
-                    <tr class="text-center">
-                        <th scope="col">ID</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Role</th>
-                        <th scope="col">Mobile No.</th>
-                        <th scope="col">Password</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Time</th>
-                        <th scope="col">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="text-center" *ngFor="let user of userList | paginate: { id: 'pagination_list', itemsPerPage: 2, currentPage: page, totalItems: totalRecords }">
-                        <td>{{ user.id }}</td>
-                        <td>{{ user.name }}</td>
-                        <td>{{ user.role }}</td>
-                        <td>{{ user.mobile_no }}</td>
-                        <td>{{ user.password }}</td>
-                        <td>{{ user.status }}</td>
-                        <td>{{ user.time }}</td>
-                        <td>
-                            <button *ngIf="user.role == 'PUBLISHER'" class="btn btn-sm btn-info m-1" (click)="userToView = user; openXl(viewimg)">
-                                <i class="fa fa-eye" aria-hidden="true"></i>
-                            </button>
-                            <button class="btn btn-sm btn-success m-1" (click)="clickOnUpdateStatus(user.id, 'ACTIVE')">
-                                <i class="fa fa-check" aria-hidden="true"></i>
-                            </button>
-                            <button class="btn btn-sm btn-danger m-1" (click)="clickOnUpdateStatus(user.id, 'INACTIVE')">
-                                <i class="fa fa-times" aria-hidden="true"></i>
-                            </button>
-                            <button class="btn btn-sm btn-danger m-1" (click)="clickOnDelete(user.id)">
-                                <i class="fa fa-trash"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr class="text-center">
-                        <td colspan="7"></td>
-                        <td>
-                            <button class="btn btn-sm btn-info m-1" (click)="open(content)">
-                                Add New
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div>
-                <pagination-controls id="pagination_list" maxSixe="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+<div class="row">
+    <div class="col-md-3 h-100" *ngFor="let user of userList | paginate: { id: 'pagination_list', itemsPerPage: 12, currentPage: page, totalItems: totalRecords }">
+        <div class="card shadow-lg p-3 mb-5 bg-white rounded h-100">
+            <div class="card-body h-100 rounded">
+                <h4 class="card-title" class="d-inline-block text-truncate text-capitalize" style="max-width: 150px;" ngbTooltip="{{ user.name }}">{{ user.name }}</h4>
+                <p class="card-text">
+                    <b>Id: </b> {{ user.id }}<br />
+                    <b>Role: </b>{{ user.role }}<br />
+                    <b>Mobile NO: </b> {{ user.mobile_no }}<br />
+                    <b>Password: </b> {{ user.password }}<br />
+                    <b>Status: </b> {{ user.status }}<br />
+                    <b>Time: </b> {{ user.time }}<br />
+                </p>
+                <div>
+                    <button *ngIf="user.role == 'PUBLISHER'" class="btn btn-md m-1" (click)="userToView = user; openXl(viewimg)" style="color: skyblue;">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                    </button>
+                    <button class="btn btn-md m-1" (click)="clickOnUpdateStatus(user.id, 'ACTIVE')" style="color: greenyellow;">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </button>
+                    <button class="btn btn-md m-1" (click)="clickOnUpdateStatus(user.id, 'INACTIVE')" style="color: red;">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </button>
+                    <button class="btn btn-md m-1" (click)="clickOnDelete(user.id)" style="color: red;">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3 h-100">
+        <div class="card shadow-lg p-3 mb-5 bg-white rounded h-100">
+            <div class="card-body h-100 rounded">
+                <h5 class="card-title" class="d-inline-block text-truncate" style="max-width: 150px;">Add New User</h5>
+                <p class="card-text">
+                    <button class="btn btn-md btn-info m-1 float-right" (click)="open(content)">
+                        Add New
+                    </button>
+                </p>
+                <div></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 h-100">
+        <div class="card shadow-lg mb-5 bg-white rounded h-100">
+            <div class="card-body h-100 rounded">
+                <div class="pagination">
+                    <pagination-controls id="pagination_list" maxSixe="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+                </div>
             </div>
         </div>
     </div>
