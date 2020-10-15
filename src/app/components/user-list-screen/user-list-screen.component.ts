@@ -20,6 +20,7 @@ export class UserListScreenComponent implements OnInit {
     userToView: any;
     user: User = null;
     fileToUpload: File;
+    updateProfileForm: FormGroup;
 
     getimgURL() {
         let fn = this.userToView.fileName.replace('Uploads/', '');
@@ -112,6 +113,7 @@ export class UserListScreenComponent implements OnInit {
         this.userService.getUserList().subscribe(
             (data) => {
                 this.userList = data;
+                console.log(this.userList);
                 this.totalRecords = this.userList.length;
                 this.spinner.hide();
             },
@@ -130,5 +132,6 @@ export class UserListScreenComponent implements OnInit {
             password: ['', [Validators.required, Validators.minLength(5)]],
             mobileNo: ['', [Validators.required, Validators.min(999999999)]],
         });
+        this.fileToUpload = null;
     }
 }

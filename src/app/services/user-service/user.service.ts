@@ -31,8 +31,17 @@ export class UserService {
         return this.httpClient.post(`${this.baseurl}/User/`, newUser).pipe(retry(1), catchError(this.handleError));
     }
 
+    updateProfile(updateProfile) {
+        console.log('update:', this.updateProfile);
+        return this.httpClient.post(`${this.baseurl}/UpdateProfile`, updateProfile).pipe(retry(1), catchError(this.handleError));
+    }
+
     getUserList() {
         return this.httpClient.get(`${this.baseurl}/Users/`).pipe(retry(1), catchError(this.handleError));
+    }
+
+    getProfileData() {
+        return this.httpClient.get(`${this.baseurl}/GetProfileData/`).pipe(retry(1), catchError(this.handleError));
     }
 
     deleteUser(userId) {

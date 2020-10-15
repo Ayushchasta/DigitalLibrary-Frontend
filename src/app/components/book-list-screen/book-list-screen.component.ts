@@ -164,5 +164,6 @@ export class BookListScreenComponent implements OnInit {
             bookPublisher: ['', Validators.required],
             bookile: [''],
         });
+        this.fileToUpload = null;
     }
 }

@@ -1,8 +1,112 @@
-<div class="row-full align-items-center" style="height: 550px; background-image: url('./assets/img/bg-7.jpg'); background-repeat: no-repeat; background-position: center; background-size: cover;">
-    <button type="button" class="btn btn-outline-primary" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);">GET STARTED</button>
+<div class="p-3 mb-5" style="text-align: center; outline: none">
+    <ngb-carousel *ngIf="images">
+        <ng-template ngbSlide>
+            <div class="picsum-img-wrapper">
+                <img src="assets/img/carousel-2.jpg" alt="Random first slide" />
+            </div>
+            <div class="carousel-caption">
+                <h3>Latest News</h3>
+                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            </div>
+        </ng-template>
+        <ng-template ngbSlide>
+            <div class="picsum-img-wrapper">
+                <img src="assets/img/carousel-6.jpg" alt="Random second slide" />
+            </div>
+            <div class="carousel-caption">
+                <h3>Great Reachability</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+        </ng-template>
+        <ng-template ngbSlide>
+            <div class="picsum-img-wrapper">
+                <img src="assets/img/carousel-9.jpg" alt="Random third slide" />
+            </div>
+            <div class="carousel-caption">
+                <h3>New New News</h3>
+                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+            </div>
+        </ng-template>
+    </ngb-carousel>
 </div>
-<div>
+
+<!--<div>
     <h1 class="text-dark">Digital Library</h1>
     <h1 class="text-dark" *ngIf="user != null">{{ user.name }}</h1>
     <h1 class="text-dark" *ngIf="user == null">Guest</h1>
+</div> 
+-->
+<br>
+<br>
+<br>
+<br>
+<div class="row">
+    <div class="col-md-3">
+        <div class="card" style="background-color: transparent; border: 0px;">
+            <div class="card-header text-center" style="background-color: transparent; border: 0px;">
+                <img src="assets/img/BgCard1.svg">
+            </div>
+            <div class="card-body text-center">
+                <h5 class="text-center" style="color: rgb(87, 132, 136);">Privacy Control</h5>
+                <div style="margin-left: 50px; margin-right: 50px;">
+                    <p style="color: gray;">
+                        Control what info your faculties and admin can view for your batches
+                    </p>
+                </div>
+                    
+                
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card" style="background-color: transparent; border: 0px;">
+            <div class="card-header text-center" style="background-color: transparent; border: 0px;">
+                <img src="assets/img/BgCard2.svg">
+            </div>
+            <div class="card-body text-center">
+                <h5 class="text-center" style="color: rgb(87, 132, 136);">Books Management</h5>
+                <div style="margin-left: 50px; margin-right: 50px;">
+                    <p style="color: gray;">
+                        Forget tons of paperwork and manage your books completely digitally
+                    </p>
+                </div>
+                    
+                
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card" style="background-color: transparent; border: 0px;">
+            <div class="card-header text-center" style="background-color: transparent; border: 0px;">
+                <img src="assets/img/BgCard3.svg">
+            </div>
+            <div class="card-body text-center">
+                <h5 class="text-center" style="color: rgb(87, 132, 136);">Multiple Roles</h5>
+                <div style="margin-left: 50px; margin-right: 50px;">
+                    <p style="color: gray;">
+                        Easily create your online courses and sell on your mobile app
+                    </p>
+                </div>
+                    
+                
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card" style="background-color: transparent; border: 0px;">
+            <div class="card-header text-center" style="background-color: transparent; border: 0px;">
+                <img src="assets/img/BgCard4.svg">
+            </div>
+            <div class="card-body text-center">
+                <h5 class="text-center" style="color: rgb(87, 132, 136);">Data Security</h5>
+                <div style="margin-left: 50px; margin-right: 50px;">
+                    <p style="color: gray;">
+                        we'll never share your data with anyone.
+                    </p>
+                </div>
+                    
+                
+            </div>
+        </div>
+    </div>
 </div>

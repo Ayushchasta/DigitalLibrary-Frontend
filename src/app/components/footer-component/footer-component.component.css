@@ -1,5 +1,31 @@
-hr {
-    height: 1px;
-    background-color: rgb(184, 176, 176);
-    border: none;
+a {
+    color: white;
+}
+.fa {
+    padding: 5px;
+    font-size: 15px;
+    width: 25px;
+    text-align: center;
+    border-radius: 50%;
+}
+
+.fa-facebook {
+    background: #3b5998;
+    color: white;
+}
+
+.fa-twitter {
+    background: #55acee;
+    color: white;
+}
+
+.fa-youtube-play {
+    background: #f00808;
+    color: white;
+}
+
+.fa-instagram {
+    color: white;
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+    background: -webkit-radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
 }

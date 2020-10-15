@@ -27,6 +27,7 @@ import { MatCardModule } from '@angular/material/card';
 
 import { MatTableModule } from '@angular/material/table';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { ManageAccountScreenComponent } from './components/manage-account-screen/manage-account-screen.component';
 
 @NgModule({
     imports: [MatGridListModule, MatTableModule, MatCardModule, BrowserModule, ReactiveFormsModule, BrowserAnimationsModule, HttpClientModule, AppRoutingModule, NgbModule, NgxSpinnerModule, FormsModule, NgxPaginationModule],
@@ -43,6 +44,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
         LoginScreenComponent,
         SignUpScreenComponent,
         PageNotFoundScreenComponent,
+        ManageAccountScreenComponent,
     ],
     providers: [{ provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }],
     bootstrap: [AppComponent],

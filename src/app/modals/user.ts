@@ -3,6 +3,7 @@ export class User {
     name: string;
     role: string;
     mobileNo: string;
+    mobile_no: string;
     status: string;
     token: string;
 }

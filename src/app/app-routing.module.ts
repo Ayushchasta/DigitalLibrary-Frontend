@@ -10,6 +10,7 @@ import { LoginScreenComponent } from './components/login-screen/login-screen.com
 import { AuthGuard } from './helpers/auth.guard';
 import { SignUpScreenComponent } from './components/sign-up-screen/sign-up-screen.component';
 import { PageNotFoundScreenComponent } from './components/page-not-found-screen/page-not-found-screen.component';
+import { ManageAccountScreenComponent } from './components/manage-account-screen/manage-account-screen.component';
 
 const routes: Routes = [
     {
@@ -38,6 +39,11 @@ const routes: Routes = [
     {
         path: 'userbooks',
         component: BookListUserScreenComponent,
+        canActivate: [AuthGuard],
+    },
+    {
+        path: 'manageaccount',
+        component: ManageAccountScreenComponent,
         canActivate: [AuthGuard],
     },
     {
