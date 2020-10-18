@@ -96,6 +96,8 @@ export class NavbarComponentComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.fetchProfileData();
+        if(this.user != null) {
+            this.fetchProfileData();
+        }
     }
 }
