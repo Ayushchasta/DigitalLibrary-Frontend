@@ -48,7 +48,7 @@ export class UserListScreenComponent implements OnInit {
         const formData = new FormData();
         formData.append('name', this.f.name.value);
         formData.append('role', this.f.role.value);
-        formData.append('mobileNo', this.f.mobileNo.value);
+        formData.append('mobile_no', this.f.mobileNo.value);
         formData.append('password', this.f.password.value);
         formData.append('file', this.fileToUpload);
         this.userService.createNewUser(formData).subscribe(
