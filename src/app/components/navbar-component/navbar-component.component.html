@@ -1,89 +1,88 @@
-<ng-template #content let-c="close" let-d="dismiss">
-    <div class="modal-header text-white bg-dark">
-        <h4 class="modal-title" id="modal-basic-title">Personal Information</h4>
-        <button type="button" class="close text-white" style="outline: none" aria-label="Close" (click)="d('cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-        <form [formGroup]="updateProfileForm" (ngSubmit)="functionOnSubmit()">
-            <div class="form-group">
-                <label>Id</label>
-                <input readonly="true" type="number" formControlName="id" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label>Name</label>
-                <input type="text" formControlName="name" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label>Mobile No.</label>
-                <input type="number" formControlName="mobile_no" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label>Role</label>
-                <input readonly="true" type="text" formControlName="role" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label>Current Password</label>
-                <input type="password" class="form-control" formControlName="password" placeholder="Enter Current Password" />
-            </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">Save</button>
-            </div>
-        </form>
-    </div>
-</ng-template>
-
-<nav class="navbar navbar-expand-lg navbar-light fixed-top shadow p-2 mb-1 rounded" style="background-color: white">
-    <a class="navbar-brand mr-4 ml-2" routerLink="/">
-        <img src="../assets/img/logo-1.jpeg" width="100" height="60" alt="Digital Library" />
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                <a class="nav-link" routerLink="/"><b>Home</b></a>
-            </li>
-
-            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                <a class="nav-link" routerLink="/about"><b>About Us</b></a>
-            </li>
-
-            <li *ngIf="user != null && user.role === 'ADMIN'" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                <a class="nav-link" routerLink="/books"><b>Books</b></a>
-            </li>
-
-            <li *ngIf="user != null && (user.role === 'ADMIN' || user.role === 'PUBLISHER')" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                <a class="nav-link" routerLink="/publisherbooks"><b>My Uploaded</b></a>
-            </li>
-
-            <li *ngIf="user != null" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                <a class="nav-link" routerLink="/userbooks"> <b>library Books</b> </a>
-            </li>
-
-            <li *ngIf="user != null && user.role === 'ADMIN'" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                <a class="nav-link" routerLink="/users"><b>Users</b></a>
-            </li>
-
-            <li *ngIf="user == null" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                <a class="nav-link" routerLink="/login"><b>Login</b></a>
-            </li>
-        </ul>
-        <ul class="navbar-nav ml-auto">
-            <li *ngIf="user != null" class="nav-item dropdown" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 20px">
-                    <i class="fa fa-1x fa-user mr-1"></i>
-                    <b>{{ user.name }}</b></a
-                >
-                <div class="dropdown-menu rounded dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" (click)="functionOnLogout()"><i class="fa fa-sign-out mr-1"></i>Logout</a>
-                    <a class="dropdown-item" (click)="open(content)"><i class="fa fa-user mr-1"></i>Customize</a>
+    <ng-template #content let-c="close" let-d="dismiss">
+        <div class="modal-header text-white bg-dark">
+            <h4 class="modal-title" id="modal-basic-title">Personal Information</h4>
+            <button type="button" class="close text-white" style="outline: none" aria-label="Close" (click)="d('cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="updateProfileForm" (ngSubmit)="functionOnSubmit()">
+                <div class="form-group">
+                    <label>Id</label>
+                    <input readonly="true" type="number" formControlName="id" class="form-control" />
                 </div>
-            </li>
-        </ul>
-    </div>
-</nav>
-<div style="min-height: 90px"></div>
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" formControlName="name" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Mobile No.</label>
+                    <input type="number" formControlName="mobile_no" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Role</label>
+                    <input readonly="true" type="text" formControlName="role" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Current Password</label>
+                    <input type="password" class="form-control" formControlName="password" placeholder="Enter Current Password" />
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </ng-template>
+
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow p-2 mb-1 rounded" style="background-color: white">
+        <a class="navbar-brand mr-4 ml-2" routerLink="/">
+            <img src="../assets/img/logo-1.jpeg" width="100" height="60" alt="Digital Library" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                    <a class="nav-link" routerLink="/"><b>Home</b></a>
+                </li>
+
+                <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                    <a class="nav-link" routerLink="/about"><b>About Us</b></a>
+                </li>
+
+                <li *ngIf="user != null && user.role === 'ADMIN'" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                    <a class="nav-link" routerLink="/books"><b>Books</b></a>
+                </li>
+
+                <li *ngIf="user != null && (user.role === 'ADMIN' || user.role === 'PUBLISHER')" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                    <a class="nav-link" routerLink="/publisherbooks"><b>My Uploaded</b></a>
+                </li>
+
+                <li *ngIf="user != null" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                    <a class="nav-link" routerLink="/userbooks"> <b>Library Books</b> </a>
+                </li>
+
+                <li *ngIf="user != null && user.role === 'ADMIN'" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                    <a class="nav-link" routerLink="/users"><b>Users</b></a>
+                </li>
+
+                <li *ngIf="user == null" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                    <a class="nav-link" routerLink="/login"><b>Login</b></a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li *ngIf="user != null" class="nav-item dropdown" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 20px">
+                        <i class="fa fa-1x fa-user mr-1"></i>
+                        <b>{{ user.name }}</b></a>
+                    <div class="dropdown-menu rounded dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" (click)="functionOnLogout()"><i class="fa fa-sign-out mr-1"></i>Logout</a>
+                        <a class="dropdown-item" (click)="open(content)"><i class="fa fa-user mr-1"></i>Customize</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div style="min-height: 90px"></div>

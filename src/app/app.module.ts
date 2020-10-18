@@ -28,6 +28,11 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { ManageAccountScreenComponent } from './components/manage-account-screen/manage-account-screen.component';
+import { ContactusScreenComponent } from './components/contactus-screen/contactus-screen.component';
+import { FeedbackScreenComponent } from './components/feedback-screen/feedback-screen.component';
+import { TermsandconditionScreenComponent } from './components/termsandcondition-screen/termsandcondition-screen.component';
+import { PrivacypolicyScreenComponent } from './components/privacypolicy-screen/privacypolicy-screen.component';
+import { CookiespolicyScreenComponent } from './components/cookiespolicy-screen/cookiespolicy-screen.component';
 
 @NgModule({
     imports: [MatGridListModule, MatTableModule, MatCardModule, BrowserModule, ReactiveFormsModule, BrowserAnimationsModule, HttpClientModule, AppRoutingModule, NgbModule, NgxSpinnerModule, FormsModule, NgxPaginationModule],
@@ -45,6 +50,11 @@ import { ManageAccountScreenComponent } from './components/manage-account-screen
         SignUpScreenComponent,
         PageNotFoundScreenComponent,
         ManageAccountScreenComponent,
+        ContactusScreenComponent,
+        FeedbackScreenComponent,
+        TermsandconditionScreenComponent,
+        PrivacypolicyScreenComponent,
+        CookiespolicyScreenComponent,
     ],
     providers: [{ provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }],
     bootstrap: [AppComponent],

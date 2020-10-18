@@ -11,6 +11,11 @@ import { AuthGuard } from './helpers/auth.guard';
 import { SignUpScreenComponent } from './components/sign-up-screen/sign-up-screen.component';
 import { PageNotFoundScreenComponent } from './components/page-not-found-screen/page-not-found-screen.component';
 import { ManageAccountScreenComponent } from './components/manage-account-screen/manage-account-screen.component';
+import { ContactusScreenComponent } from './components/contactus-screen/contactus-screen.component';
+import { CookiespolicyScreenComponent } from './components/cookiespolicy-screen/cookiespolicy-screen.component';
+import { FeedbackScreenComponent } from './components/feedback-screen/feedback-screen.component';
+import { PrivacypolicyScreenComponent } from './components/privacypolicy-screen/privacypolicy-screen.component';
+import { TermsandconditionScreenComponent } from './components/termsandcondition-screen/termsandcondition-screen.component';
 
 const routes: Routes = [
     {
@@ -53,6 +58,26 @@ const routes: Routes = [
     {
         path: 'signup',
         component: SignUpScreenComponent,
+    },
+    {
+        path: 'contact',
+        component: ContactusScreenComponent,
+    },
+    {
+        path: 'cookiespolicy',
+        component: CookiespolicyScreenComponent,
+    },
+    {
+        path: 'feedback',
+        component: FeedbackScreenComponent,
+    },
+    {
+        path: 'privacypolicy',
+        component: PrivacypolicyScreenComponent,
+    },
+    {
+        path: 'termsandcondition',
+        component: TermsandconditionScreenComponent,
     },
     {
         path: '**',
