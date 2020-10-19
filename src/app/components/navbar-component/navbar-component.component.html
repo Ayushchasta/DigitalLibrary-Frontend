@@ -79,9 +79,10 @@
                         <b *ngIf="user != null">{{ user.name }}</b>
                         <b *ngIf="user == null">Hi Guest</b>
                     </a>
-                    <div *ngIf="user != null" class="dropdown-menu rounded dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" (click)="functionOnLogout()"><i class="fa fa-sign-out mr-1"></i>Logout</a>
-                        <a class="dropdown-item" (click)="open(content)"><i class="fa fa-user mr-1"></i>Customize</a>
+                    <div class="dropdown-menu rounded dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a *ngIf="user == null" class="dropdown-item" routerLink="/login"><i class="fa fa-sign-out mr-1"></i>Login</a>
+                        <a *ngIf="user != null" class="dropdown-item" (click)="functionOnLogout()"><i class="fa fa-sign-out mr-1"></i>Logout</a>
+                        <a *ngIf="user != null" class="dropdown-item" (click)="open(content)"><i class="fa fa-user mr-1"></i>Customize</a>
                     </div>
                 </li>
             </ul>
